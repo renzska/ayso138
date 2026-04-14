@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kickstart Program – Coach Resource Page | AYSO Region 138</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&amp;family=Open+Sans:wght@400;600&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: Arial;
+      font-weight: 700;
+    }
+
+    p {
+      font-family: Arial;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #444444;
+    }
+
+    .page-wrap {
+      padding: 0 16px 48px;
+      font-family: Arial;
+      font-size: 16px;
+      color: #444444;
+    }
+
+    /* HEADER */
+    .header {
+      background: #08529f;
+      border-radius: 0;
+      padding: 16px;
+    }
+
+    .header h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      font-family: Arial;
+      color: #fff;
+      line-height: 1.2;
+      padding: 0px !important;
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 16px;
+      font-family: Arial;
+      color: #a8c4e0;
+    }
+
+    .card {
+      background: transparent;
+      border: none;
+      padding: 24px 0 0;
+      font-family: Arial;
+      font-size: 16px;
+      color: #444444;
+    }
+
+    /* TABLE OF CONTENTS */
+    .toc {
+      background: #f0f5ff;
+      border: 1px solid #c5d8f5;
+      border-left: 5px solid #08529f;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 0 0 32px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .toc h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-family: Arial;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #08529f;
+    }
+
+    .toc ul,
+    .toc ol {
+      margin: 0;
+      padding-left: 20px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .toc li {
+      margin-bottom: 5px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .toc li ul {
+      margin-top: 4px;
+      padding-left: 16px;
+    }
+
+    .toc li ul li {
+      margin-bottom: 3px;
+    }
+
+    .toc a,
+    .toc a:link,
+    .toc a:visited,
+    .toc a:active,
+    .toc a:hover {
+      color: #2a7de1 !important;
+      text-decoration: none !important;
+    }
+
+    .toc a:hover {
+      text-decoration: underline !important;
+    }
+
+    /* SECTION HEADINGS */
+    /* .section {
+      margin-bottom: 36px;
+    } */
+
+    h2.section-title {
+      font-size: 16px;
+      font-family: Arial;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: #08529f;
+      padding: 10px 16px;
+      margin: 0 0 16px;
+      border-radius: 0;
+    }
+
+    h3.sub-title {
+      font-size: 16px;
+      font-family: Arial;
+      color: #08529f;
+      margin: 20px 0 8px;
+      text-transform: uppercase;
+    }
+
+    /* CALLOUT BOXES */
+    .callout {
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .callout-blue {
+      background: #e8f0fe;
+      border-left: 4px solid #08529f;
+    }
+
+    .callout-green {
+      background: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+    }
+
+    .callout-yellow {
+      background: #fffde7;
+      border-left: 4px solid #f9a825;
+    }
+
+    .callout-red {
+      background: #fce4e4;
+      border-left: 4px solid #ef3e35;
+    }
+
+    .callout p {
+      margin: 0;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .callout p+p {
+      margin-top: 8px;
+    }
+
+    /* LISTS */
+    ol.steps {
+      margin: 0 0 12px 20px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    ol.steps li {
+      margin-bottom: 8px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    ul.bullets {
+      margin: 0 0 12px 20px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    /* BUTTONS */
+    .btn-link {
+      display: inline-block;
+      background: #08529f;
+      color: #fff !important;
+      text-decoration: none !important;
+      font-family: Arial;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 8px 18px;
+      border-radius: 5px;
+      margin: 4px 6px 4px 0;
+    }
+
+    .btn-link:hover {
+      background: #2a7de1;
+    }
+
+    .btn-link-outline {
+      display: inline-block;
+      border: 2px solid #08529f;
+      color: #08529f !important;
+      text-decoration: none !important;
+      font-family: Arial;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 6px 16px;
+      border-radius: 5px;
+      margin: 4px 6px 4px 0;
+    }
+
+    .btn-link-outline:hover {
+      background: #f0f5ff;
+    }
+
+    .btn-link-red {
+      display: inline-block;
+      background: #ef3e35;
+      color: #fff !important;
+      text-decoration: none !important;
+      font-family: Arial;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 8px 18px;
+      border-radius: 5px;
+      margin: 4px 6px 4px 0;
+    }
+
+    .btn-link-red:hover {
+      background: #c10230;
+    }
+
+    /* ACTIVITY GRID */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .activity-card {
+      background: #f8faff;
+      border: 1px solid #c5d8f5;
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .activity-card h4 {
+      margin: 0 0 8px;
+      color: #003366;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .activity-card .tag {
+      display: inline-block;
+      background: #08529f;
+      color: #fff;
+      font-family: Arial;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 3px;
+      padding: 2px 7px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .activity-card ul {
+      margin: 0 0 0 16px;
+      padding: 0;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .activity-card ul li {
+      margin-bottom: 4px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial;
+      font-size: 16px;
+      margin: 12px 0;
+    }
+
+    th {
+      background: #08529f;
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    tr:nth-child(even) td {
+      background: #f4f7fc;
+    }
+
+    /* COLOR DOTS */
+    .dot {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    .red-dot {
+      background: #ef3e35;
+    }
+
+    .blue-dot {
+      background: #08529f;
+    }
+
+    /* DIVIDER */
+    hr.divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 32px 0;
+    }
+
+    /* ROLE CHIP */
+    .role {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #08529f;
+      font-family: Arial;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 2px 10px;
+      margin: 0 4px 4px 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      font-family: Arial;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .footer strong {
+      color: #222;
+      font-family: Arial;
+    }
+
+    .footer a {
+      color: #2a7de1;
+      text-decoration: none;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 20px 16px;
+      }
+
+      .card {
+        padding: 16px 0 0;
+      }
+    }
+
+    .activity-full {
+      background: #fff;
+      border: 1px solid #dde2ea;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .activity-full-header {
+      padding: 14px 18px 10px;
+      background: #f9fafb;
+      border-bottom: 1px solid #dde2ea;
+    }
+
+    .activity-full-header h4 {
+      margin: 5px 0 0;
+      font-family: Arial;
+      font-size: 17px;
+      color: #1a1a2e;
+    }
+
+    .activity-meta {
+      font-family: Arial;
+      font-size: 16px;
+      color: #666;
+      font-style: italic;
+      margin: 3px 0 0;
+    }
+
+    .act-section {
+      padding: 12px 18px;
+      border-bottom: 1px solid #eef0f4;
+    }
+
+    .act-section:last-child {
+      border-bottom: none;
+    }
+
+    .act-section-title {
+      font-family: Arial;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .act-section ul {
+      margin: 0;
+      padding-left: 20px;
+      font-family: Arial;
+      font-size: 16px;
+      line-height: 1.55;
+      color: #333;
+    }
+
+    .act-section ul li {
+      margin-bottom: 3px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .fms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .fms-group h6 {
+      font-family: Arial;
+      font-size: 16px;
+      font-weight: 700;
+      color: #555;
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .fms-group ul {
+      margin: 0;
+      padding-left: 18px;
+      font-family: Arial;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    .act-reflection {
+      font-family: Arial;
+      font-style: italic;
+      color: #555;
+      font-size: 16px;
+      background: #fffef0;
+      border-left: 3px solid #f4c430;
+      padding: 8px 12px;
+      margin-top: 10px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .act-footer {
+      padding: 10px 18px;
+      border-top: 1px solid #eef0f4;
+      background: #f9fafb;
+    }
+
+    .act-footer a {
+      font-family: Arial;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrap">
+
+    <!-- HEADER — text only, no icon -->
+    <div class="header">
+      <h1>Kickstart (Playground and Schoolyard) – Program Guide</h1>
+    </div>
+
+    <div class="card">
+
+      <p>Kickstart is AYSO's introductory program for children ages 3–6. Sessions run as a Jamboree and focus on Soccer,
+        Fundamental Motor Skills (FMS), and Social-Emotional Learning (SEL) through movement and play. There are no
+        standings, no scores, and no pressure. Just kids moving, laughing, and falling in love with the game of soccer.
+
+        This page is your go-to reference for the season. New to Kickstart? Start at the top and work your way down.
+        Coming back mid-season? Jump straight to your session plan for the week.</p>
+
+      <!-- TABLE OF CONTENTS -->
+      <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+          <li><a href="https://www.ayso138.org/Default.aspx?tabid=975975" target="_blank">Spring 2026 Kickstart Schedule 🔗</a></li>
+          <li><a href="#manuals">Manual &amp; Session Plans</a></li>                 
+          <li><a href="#equipment">Equipment List</a></li>
+          <li><a href="#arrival">Arrival Activities</a></li>
+          <li><a href="#weekly">Weekly Responsibilities Checklist</a></li>
+          <li><a href="#tips">Field Tips &amp; Coaching Flexibility</a></li>
+          <li><a href="#roles">Roles &amp; Communication</a></li>
+          <li><a href="#session-structure">Session Structure &amp; Timing</a></li>   
+          <li><a href="#sessions">Session Plans</a>
+            <ul>
+              <!-- <li><a href="#session1">Session 1 (Week 1) — Web-Slinger / Any Goal / Big Match</a></li>
+              <li><a href="#session2">Session 2 (Week 2) — Coach Says / Sharks and Minnows / Big Match</a></li>
+              <li><a href="#session3">Session 3 (Week 3) — Frog Jumping / Bank Robbery / Big Match</a></li>
+              <li><a href="#session4">Session 4 (Week 4) — Treasure Hunt / Bumper Ball / Big Match</a></li>
+              <li><a href="#session5">Session 5 (Week 5) — Ice Cream Cones / Slippery Snake / Big Match</a></li>
+              <li><a href="#session6">Session 6 (Week 6) — Hunters and Hunted / Big Bad Bear / Big Match</a></li> -->
+              <li><a href="#session1">Session 1 (Week 1)</a></li>
+              <li><a href="#session2">Session 2 (Week 2)</a></li>
+              <li><a href="#session3">Session 3 (Week 3)</a></li>
+              <li><a href="#session4">Session 4 (Week 4)</a></li>
+              <li><a href="#session5">Session 5 (Week 5)</a></li>
+              <li><a href="#session6">Session 6 (Week 6)</a></li>
+            </ul>
+          </li>
+          <li><a href="#training">Kickstart Leader Training</a></li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <!-- MANUALS & LINKS -->
+      <div class="section" id="manuals">
+        <h2 class="section-title">Manual &amp; Session Plans</h2>
+
+        <h3 class="sub-title">Kickstart Program Manual</h3>
+        <p>Please review <strong>pages 1–24</strong> of the manual before your first session. This covers the program
+          philosophy, session structure, and foundational activities.</p>
+        <p>
+          <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=1" target="_blank">📖 Open Kickstart
+            Manual</a>
+        </p>
+
+        <h3 class="sub-title">Quick Activity Reference Pages</h3>
+        <p>Bookmark these sections for fast in-session reference:</p>
+        <ul class="bullets">
+          <li><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=33" target="_blank">Pages 25–31</a>
+            Session Plans</li>
+          <li><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=33" target="_blank">Pages 34–43</a>
+            Arrival
+            Activities</li>
+          <li><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=44" target="_blank">Pages 44–55</a>
+            Fundamental Motor Skills Activities</li>
+          <li><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=56" target="_blank">Pages 56–69</a>
+            Additional Activities</li>
+          <li><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=70" target="_blank">Pages 70–78</a>
+            Game-Like Activities</li>
+          <li><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=79" target="_blank">Pages 79–80</a>
+            FMS
+            Video Links</li>
+        </ul>
+
+        <h3 class="sub-title">Fundamental Motor Skills (FMS) Videos</h3>
+        <p>
+
+          <a class="btn-link" href="https://aysou.video/fms1/" target="_blank">🎬 Running</a>
+          <a class="btn-link" href="https://aysou.video/fms8/" target="_blank">🎬 Balance</a>
+          <a class="btn-link" href="https://aysou.video/fms9/" target="_blank">🎬 Bending</a>
+          <a class="btn-link" href="https://aysou.video/fms10/" target="_blank">🎬 Trunk Rotation</a>
+          <a class="btn-link" href="https://aysou.video/fms6/" target="_blank">🎬 Twisting/Pivoting</a>
+          <a class="btn-link" href="https://aysou.video/fms3/" target="_blank">🎬 Hopping</a>
+          <a class="btn-link" href="https://aysou.video/fms2/" target="_blank">🎬 Jumping and Landing</a>
+          <a class="btn-link" href="https://aysou.video/fms4/" target="_blank">🎬 Skipping</a>
+          <a class="btn-link" href="https://aysou.video/fms5/" target="_blank">🎬 Dodging</a>
+          <a class="btn-link" href="https://aysou.video/fms13/" target="_blank">🎬 Rolling a Ball</a>
+          <a class="btn-link" href="https://aysou.video/fms15/" target="_blank">🎬 Underarm Throw</a>
+          <a class="btn-link" href="https://aysou.video/fms17/" target="_blank">🎬 Overarm Throw</a>
+          <a class="btn-link" href="https://aysou.video/fms16/" target="_blank">🎬 Catching</a>
+          <a class="btn-link" href="https://aysou.video/fms12/" target="_blank">🎬 Bouncing (Dribbling with Hands)</a>
+
+        </p>
+      </div>
+
+      <hr class="divider">        
+
+      <!-- EQUIPMENT -->
+      <div class="section" id="equipment">
+        <h2 class="section-title">Equipment List Per Group</h2>
+
+        <h3 class="sub-title">Player Equipment</h3>
+        <ul class="bullets">
+          <!-- <li>Size 3 soccer ball (players should bring a ball to every activity)</li> -->
+          <li>Athletic footwear and shin guards (covered by socks)</li>
+          <li>Shirt turned to the correct color for their group</li>
+        </ul>
+
+        <h3 class="sub-title">Field Equipment (Provided by AYSO Board)</h3>
+        <ul class="bullets">
+          <li>Cones</li>
+          <li>4-5 pinnies</li>
+          <li>Four pop-up goals</li>
+          <li>Fun props: hula hoops, beanbags, etc.</li>
+        </ul>
+
+        <h3 class="sub-title">Leader Bag "Must Haves"</h3>
+        <ul class="bullets">
+          <li>Charged cell phone (in case of emergency)</li>
+          <li>Session plan for the day (digital or printed)</li>
+          <li>Basic first-aid kit (be familiar with the contents)</li>
+          <li>Water (remind parents and players to bring their own)</li>
+        </ul>
+
+      </div>
+
+      <hr class="divider">
+
+      <!-- ARRIVAL ACTIVITIES — moved up from #9 -->
+      <div class="section" id="arrival">
+        <h2 class="section-title">Arrival Activities</h2>
+        <p>Rather than having kids sit around while everyone arrives, get them moving right away. Arrival activities
+          start
+          on <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=34" target="_blank">pages 34-43 of the
+            manual.</a><br><br> Examples include:</p>
+        <ul class="bullets">
+          <li>Red Light / Green Light</li>
+          <li>Freeze Tag</li>
+          <li>Hungry Hippos</li>
+        </ul>
+        <p>Start one of these as soon as the first few kids arrive. It sets the tone and burns off early energy before
+          the structured session begins.</p>
+      </div>
+
+      <hr class="divider">
+
+      <!-- WEEKLY RESPONSIBILITIES -->
+      <div class="section" id="weekly">
+        <h2 class="section-title">Weekly Responsibilities Checklist</h2>
+
+        <div class="callout callout-green">
+          <span>✅ Use this checklist each week to stay organized and keep your families informed.</span>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Who</th>
+              <th>When</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Head Coach</td>
+              <td><strong>Start of season</strong></td>
+              <td>Message your group roster and confirm every parent has responded. If you haven't received a response
+                by the Thursday before the first session, notify your Coach Administrator.</td>
+
+            </tr>
+            <tr>
+              <td>Head Coach</td>
+              <td><strong>Start of season</strong></td>
+              <td>Bring treats for your group (6–8 kids) on the first session day, if not already assigned to someone
+                else earlier in the week.</td>
+
+            </tr>
+            <tr>
+              <td>Head Coach or Team Manager</td>
+              <td><strong>Start of season</strong></td>
+              <td>Assign treats for the rest of the season (or let parents volunteer). Assigning is easier; parents can
+                trade between themselves.</td>
+
+            </tr>
+            <tr>
+              <td>Head Coach or Team Manager</td>
+              <td><strong>Every Thursday</strong></td>
+              <td>Send a reminder message to your group with: session time, jersey color, and treat assignment for the
+                week.</td>
+
+            </tr>
+            <tr>
+              <td>Head Coach</td>
+              <td><strong>If unavailable</strong></td>
+              <td>Let your Coach Administrator know as soon as possible so coverage can be arranged.</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="divider">
+
+      <!-- FIELD TIPS -->
+      <div class="section" id="tips">
+        <h2 class="section-title">Field Tips &amp; Coaching Flexibility</h2>
+        <p>Not every activity will land the same way with every group. You know your kids. <strong>You have the ability
+            to adjust on the fly.</strong></p>
+
+        <div class="activity-grid">
+          <div class="activity-card">
+            <h4>⏰ Kids Need a Break?</h4>
+            <ul>
+              <li>Give it to them whenever they need it.</li>
+              <li>If one child needs a break, send them to their parent and invite them back when ready.</li>
+            </ul>
+          </div>
+          <div class="activity-card">
+            <h4>🚫 Activity Not Working?</h4>
+            <ul>
+              <li>Switch to a different one. Do not push through an activity that has lost the group.</li>
+              <li>Backup Activities:<br><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=44"
+                  target="_blank">Page 44-55 (FMS)</a><br><a class="btn-link"
+                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=56" target="_blank">Page 56-69 (Additional
+                  Soccer)</a> <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=70"
+                  target="_blank">Page 70-78 (Game-Like)</a></li>
+            </ul>
+          </div>
+          <div class="activity-card">
+            <h4>🤔 Bored After 5 Minutes?</h4>
+            <ul>
+              <li>Introduce a progression from the Variations section of the activity.</li>
+              <li>Change the rule, add a ball, add a challenge, or switch to an arrival activity.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout callout-blue">
+          <span><strong>Remember:</strong> For most of these kids, this is their very first introduction to soccer. Our
+            job is to help them love it. Keep the energy positive, keep the game moving, and celebrate every moment of
+            engagement.</span>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- ROLES & COMMUNICATION -->
+      <div class="section" id="roles">
+        <h2 class="section-title">Roles &amp; Communication</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Responsibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Program Leader (Head Coach)</strong></td>
+              <td>You are running the session. Make decisions, adjust activities, communicate with parents.</td>
+            </tr>
+            <tr>
+              <td><strong>Assistant Coach / Activity Leader</strong></td>
+              <td>Support the Program Leader as needed. Follow their lead.</td>
+            </tr>
+            <tr>
+              <td><strong>Team Manager</strong></td>
+              <td>Send Thursday reminders, manage treat schedule, handle parent communication.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="sub-title">First Saturday Morning Introduction</h3>
+        <p>The Coach Administrator will open with a brief introduction to parents at the start of the first session of
+          the first Saturday. After that, Program Leader, the program is yours.</p>
+
+        <h3 class="sub-title">If You Need Help</h3>
+        <ul class="bullets">
+          <li>Text your Coach Administrator directly and they will respond as quickly as possible.</li>
+          <li>If you know you will be unavailable on a Saturday, please notify the Coach Administrator as soon as
+            possible so coverage can be arranged.</li>
+          <li>After each session, share any feedback, suggestions, or questions for the following week.</li>
+        </ul>
+
+        <div class="callout callout-green">
+          <p>🌟 <strong>Thank you for stepping up as a volunteer.</strong> What you do on Saturday mornings plants the
+            seed for a lifelong love of soccer and sports in general. We are grateful for your time and energy!</p>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- SESSION STRUCTURE -->
+      <div class="section" id="session-structure">
+        <h2 class="section-title">Session Structure &amp; Timing</h2>
+        <p>Each session is <strong>1 hour maximum</strong>, including organizing time and breaks. Here is the standard
+          breakdown:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Segment</th>
+              <th>Duration</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Activation &amp; Group Forming</strong></td>
+              <td>~12 min</td>
+              <td>Activation game as children arrive and introduction to the session activities by Program Leaders</td>
+            </tr>
+            <tr>
+              <td><strong>FMS Activity</strong></td>
+              <td>15 min</td>
+              <td>~12 min active + 3 min breaks</td>
+            </tr>
+            <tr>
+              <td><strong>Game-like Activity</strong></td>
+              <td>15 min</td>
+              <td>~12 min active + 3 min breaks</td>
+            </tr>
+            <tr>
+              <td><strong>Big Match</strong></td>
+              <td>18 min</td>
+              <td>~4 quarters x 3 min active with 3 x 2 min breaks</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-green">
+          <span>✅ <strong>Adjust play time and breaks as needed</strong> based on weather, energy levels, and how your
+            group is doing. Less is more with this age group!</span>
+        </div>
+
+        <h3 class="sub-title">Playing Areas</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th>Minimum</th>
+              <th>Maximum</th>
+              <th># of Goals For Big Game</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>2v2</strong></td>
+              <td>22 x 17 yards</td>
+              <td>30 x 18 yards</td>
+              <td>4 goals (2 per team)</td>
+            </tr>
+            <tr>
+              <td><strong>3v3</strong></td>
+              <td>30 x 18 yards</td>
+              <td>35 x 23 yards</td>
+              <td>4 goals (2 per team)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="divider">   
+
+       <!-- SESSION PLANS -->
+      <div class="section" id="sessions">
+        <h2 class="section-title">Session Plans</h2>
+        <p>Each session follows the same three-activity format. The SEL theme changes each week.</p>
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+       SESSION 1
+       ═══════════════════════════════════════════════════════════ -->
+        <div id="session1" style="margin-top:28px;">
+          <h3 class="sub-title">Session 1 (Week 1)</h3>
+          <p><strong>SEL Theme: Social Awareness</strong> &nbsp;•&nbsp; <em>Recognize other people's feelings</em></p>
+
+          <!-- WEB-SLINGER -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag">FMS Activity 1</div>
+              <h4>🕸️ Web-Slinger</h4>
+              <p class="activity-meta">FMS: Running</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>15 x 15 yd. grid with 4 or more cones</li>
+                <li>Scrimmage vests (webs)</li>
+                <li>Ball per player (for progressions)</li>
+                <li>All players are required to play within the grid</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>One player is the Web-Slinger; all others are villains</li>
+                <li>Web-Slinger has numerous scrimmage vests (webs) and must chase villains, throw a web, and hit a
+                  villain to web that player</li>
+                <li>If a villain gets webbed they must freeze, put their hands in the air, and open their legs</li>
+                <li>A villain can only be released if a teammate crawls through their legs like a snake</li>
+                <li>To complete the game, the Web-Slinger must have all villains frozen at the same time</li>
+                <li>Swap the Web-Slinger often and at every progression</li>
+              </ul>
+              <p class="act-reflection">💬 Who likes being the Web-Slinger? Why? Who doesn't? Why?</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>If a player runs out or is chased out of the area, they are frozen when they come back in</li>
+                <li>Players can dribble a ball and the Web-Slinger must web their ball to get them out</li>
+                <li>Increase the number of Web-Slingers</li>
+                <li>Add a time challenge</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Running</h6>
+                  <ul>
+                    <li>Head up, eyes forward</li>
+                    <li>Head and body stable</li>
+                    <li>Body leans slightly forward</li>
+                    <li>Move arms back and forth</li>
+                    <li>Relaxed shoulders with elbows bent 90°</li>
+                    <li>High knees and heels to bottom</li>
+                    <li>Opposite arm to opposite leg</li>
+                    <li>Drive from balls of feet and land on heels</li>
+                    <li>Stay on narrow path</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=45" target="_blank">📄 Detailed
+                Activity Instructions (Page 45)</a>
+            </div>
+          </div>
+
+          <!-- ANY GOAL -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#2e7d32;">Game-like Activity 2</div>
+              <h4>⚽ Any Goal</h4>
+              <p class="activity-meta">Emphasis: Score!</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>20 x 15 yd. grid</li>
+                <li>A central goal on each end line</li>
+                <li>Numerous balls — at least one per player, ideally a few extra</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>Leader rolls numerous balls onto the field</li>
+                <li>Players collect a ball and score in any goal</li>
+                <li>Have parents behind goals to redistribute balls and keep the game flowing</li>
+                <li>Purpose is for players to understand the aim of soccer is to score goals!</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Once all balls are in the goals, reset and begin again — players must now score in a different goal
+                </li>
+                <li>Add a set time period and keep score</li>
+                <li>Add corner goals</li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=71" target="_blank">📄 Detailed
+                Activity Instructions (Page 71)</a>
+            </div>
+          </div>
+
+          <!-- THE BIG MATCH -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#6a1b9a;">Activity 3</div>
+              <h4>🏆 The Big Match</h4>
+              <p class="activity-meta">Emphasis: 3v3 — play 3v3 for last 3 sessions to help players gain familiarity</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>Small-sided field with small goals (30 x 15 yd. grid)</li>
+                <li>Two teams of three — scrimmage vests and colorful team names</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>3v3 game to goal with simple rules: goals, free-kicks (kicking/tripping), kick-offs (start of game
+                  and after goals), ball in/out of play (touchline and goal line), throw-ins (don't worry about
+                  technique)</li>
+                <li>Have two halves and switch ends — just like the big match</li>
+                <li>"New Ball" restart after a goal or ball goes out — opponents 3 yards away</li>
+                <li>Willing parents help manage balls to keep the game flowing</li>
+                <li>Don't worry about enforcing strict rules; simply introduce them and keep the game flowing</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>To start or restart, ask players to find a space and freeze when the ball goes out of play</li>
+                <li>Give the ball to the player in most space, or one who hasn't had many touches — allow them a few
+                  seconds to travel toward goal before others move freely</li>
+                <li>This encourages spatial awareness and prevents one or two players from dominating (common in 3v3)
+                </li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank">📄 Detailed
+                Activity Instructions (Page 76)</a>
+            </div>
+          </div>
+
+          <p><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=25" target="_blank">📄 View Session 1
+              in Manual (Page 25)</a></p>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+       SESSION 2
+       ═══════════════════════════════════════════════════════════ -->
+        <div id="session2" style="margin-top:36px;">
+          <h3 class="sub-title">Session 2 (Week 2)</h3>
+          <p><strong>SEL Theme: Self-Awareness</strong> &nbsp;•&nbsp; <em>Identify and manage emotions and behaviors
+              (happy, sad, excited, fun, etc.)</em></p>
+
+          <!-- COACH SAYS -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag">FMS Activity 1</div>
+              <h4>🗣️ Coach Says</h4>
+              <p class="activity-meta">FMS: Running, Dodging, Twisting / Pivoting</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>15 x 15 yd. grid</li>
+                <li>Ball per player</li>
+                <li>Players start on the end-line with a ball at their feet</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>Leader calls commands: TAKE ONE STEP FORWARD, BALANCE ON RIGHT/LEFT LEG, SIT ON BALL, ONE FOOT ON
+                  BALL, SPEED UP, SLOW DOWN, JUMP OVER BALL, etc.</li>
+                <li>Players only react if the command is preceded by "Coach Says"</li>
+                <li>Balancing on each leg is the main focus</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Change the command phrase from "Coach Says" to something else (e.g., a player's name, a funny word)
+                </li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=46" target="_blank">📄 Detailed
+                Activity Instructions (Page 46)</a>
+            </div>
+          </div>
+
+          <!-- SHARKS AND MINNOWS -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#2e7d32;">Game-like Activity 2</div>
+              <h4>🦈 Sharks and Minnows</h4>
+              <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Running</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>15 x 15 yd. grid with 4 or more cones</li>
+                <li>1 ball per player</li>
+                <li>Tail (scrimmage vest) per player</li>
+                <li>All players must play within the grid</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>Minnows have a tail (pinnie) tucked in the back of their shorts</li>
+                <li>The Shark (Leader) moves around the grid catching minnows by pulling out their tails</li>
+                <li>When a minnow loses its tail it must leave the grid (the pond)</li>
+                <li>To re-enter, minnows must perform a FMS task: balance on one leg for 5 seconds, perform 5 ball
+                  bounces, etc.</li>
+                <li>Start without a ball, then introduce one</li>
+              </ul>
+              <p class="act-reflection">💬 Did anyone enjoy this game? Why? Did anyone not enjoy it? Why?</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>If caught, minnows become baby sharks</li>
+                <li>Conduct the activity without a ball first, then introduce a ball</li>
+                <li>Limit players to only use L foot, R foot, outside of R or L, or inside of both feet</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Running</h6>
+                  <ul>
+                    <li>Head up, eyes forward</li>
+                    <li>Head and body stable</li>
+                    <li>Body leans slightly forward</li>
+                    <li>Move arms back and forth</li>
+                    <li>Relaxed shoulders with elbows bent 90°</li>
+                    <li>High knees and heels to bottom</li>
+                    <li>Opposite arm to opposite leg</li>
+                    <li>Drive from balls of feet and land on heels</li>
+                    <li>Stay on narrow path</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=57" target="_blank">📄 Detailed
+                Activity Instructions (Page 57)</a>
+            </div>
+          </div>
+
+          <!-- THE BIG MATCH -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#6a1b9a;">Activity 3</div>
+              <h4>🏆 The Big Match</h4>
+              <p class="activity-meta">Emphasis: 3v3</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>Small-sided field with small goals (30 x 15 yd. grid)</li>
+                <li>Two teams of three — scrimmage vests and colorful team names</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>3v3 game to goal with simple rules: goals, free-kicks, kick-offs, ball in/out of play, throw-ins
+                </li>
+                <li>Have two halves and switch ends</li>
+                <li>"New Ball" restart — opponents 3 yards away; willing parents help manage balls</li>
+                <li>Don't enforce strict rules; simply introduce them and keep the game flowing</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Ask players to find a space and freeze when the ball goes out</li>
+                <li>Give ball to the player with most space or fewest touches — allow a few seconds toward goal before
+                  others move freely</li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank">📄 Detailed
+                Activity Instructions (Page 76)</a>
+            </div>
+          </div>
+
+          <p><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=26" target="_blank">📄 View Session 2
+              in Manual (Page 26)</a></p>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+       SESSION 3
+       ═══════════════════════════════════════════════════════════ -->
+        <div id="session3" style="margin-top:36px;">
+          <h3 class="sub-title">Session 3 (Week 3)</h3>
+          <p><strong>SEL Theme: Interpersonal Skills</strong> &nbsp;•&nbsp; <em>Engage in non-verbal communication with
+              each other</em></p>
+
+          <!-- FROG JUMPING -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag">FMS Activity 1</div>
+              <h4>🐸 Frog Jumping</h4>
+              <p class="activity-meta">FMS: Jumping / Landing and Running</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>2 cones to mark a start line</li>
+                <li>Mark four lily pads (placement pads or hula hoops) per row; repeat for 4–5 rows</li>
+                <li>Mark an end line using tall cones approximately 10 yards away</li>
+                <li>Create two parallel lines of lily pads</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>All children line up in two lines on the start line, facing you at the end line</li>
+                <li>Kids jump like a frog from lily pad to lily pad in their row, then run around the end marker and
+                  back to start</li>
+                <li>Sing a "frog" song while they jump; children should "croak" while leaping</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Ask children to jump in different directions: forwards, backwards, and sideways</li>
+                <li>Increase or decrease distances between lily pads</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Jumping / Landing</h6>
+                  <ul>
+                    <li>Head up, feet slightly apart</li>
+                    <li>Bend hips, knees and ankles into crouch position pre-takeoff</li>
+                    <li>Arms reach/swing behind body then swing upward and forward above head</li>
+                    <li>Legs extend and explode from crouch position, pushing from toes</li>
+                    <li>Arms and legs work together</li>
+                    <li>Clear shape and control in the air</li>
+                    <li>Ankles, knees and hips bend and arms lower on landing</li>
+                    <li>When jumping for distance, arms propel forward more; landing arms reach forward for balance</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=52" target="_blank">📄 Detailed
+                Activity Instructions (Page 52)</a>
+            </div>
+          </div>
+
+          <!-- BANK ROBBERY -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#2e7d32;">Game-like Activity 2</div>
+              <h4>🏦 Bank Robbery</h4>
+              <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Running, Rolling a Ball</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>10–12 soccer balls</li>
+                <li>15 x 15 yd. grid with 4 or more cones</li>
+                <li>All players are required to play within the grid</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>All players stand by a corner cone</li>
+                <li>Leader yells "Bank Robbery!" — all players sprint to the center, collect a ball with their feet, and
+                  return it to their corner cone as quickly as possible, stopping the ball by the cone</li>
+                <li>They return to the center to get another ball</li>
+                <li>When all balls have been collected, the player with the most balls wins</li>
+              </ul>
+              <p class="act-reflection">💬 Once players get back to their sides, they find a teammate and give them a
+                thumbs up.</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Limit players to L foot, R foot, outside of R or L, or inside of both feet</li>
+                <li>Add more balls to the center and enlarge the grid</li>
+                <li>Once all center balls are taken, players can steal from each other's banks (watch the time — this
+                  can get tiring!)</li>
+                <li>Have players pick balls up and carry them back to their nest, or roll the ball back</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Rolling a Ball</h6>
+                  <ul>
+                    <li>Hold ball using fingers, palm side up</li>
+                    <li>Stand facing target</li>
+                    <li>Bring arm down and back, rocking onto back foot</li>
+                    <li>Step forward with opposite foot to hand</li>
+                    <li>Bend at knees and swing arm forward to body</li>
+                    <li>Release ball in front of lead foot in smooth, fluid motion</li>
+                    <li>Follow through in direction of target</li>
+                    <li>Keep the ball low</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=69" target="_blank">📄 Detailed
+                Activity Instructions (Page 69)</a>
+            </div>
+          </div>
+
+          <!-- THE BIG MATCH -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#6a1b9a;">Activity 3</div>
+              <h4>🏆 The Big Match</h4>
+              <p class="activity-meta">Emphasis: 3v3</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>Small-sided field with small goals (30 x 15 yd. grid)</li>
+                <li>Two teams of three — scrimmage vests and colorful team names</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>3v3 game to goal with simple rules: goals, free-kicks, kick-offs, ball in/out of play, throw-ins
+                </li>
+                <li>Have two halves and switch ends</li>
+                <li>"New Ball" restart — opponents 3 yards away; willing parents help manage balls</li>
+                <li>Don't enforce strict rules; simply introduce them and keep the game flowing</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Ask players to find a space and freeze when the ball goes out</li>
+                <li>Give ball to the player with most space or fewest touches — allow a few seconds toward goal before
+                  others move freely</li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank">📄 Detailed
+                Activity Instructions (Page 76)</a>
+            </div>
+          </div>
+
+          <p><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=27" target="_blank">📄 View Session 3
+              in Manual (Page 27)</a></p>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+       SESSION 4
+       ═══════════════════════════════════════════════════════════ -->
+        <div id="session4" style="margin-top:36px;">
+          <h3 class="sub-title">Session 4 (Week 4)</h3>
+          <p><strong>SEL Theme: Social Awareness</strong> &nbsp;•&nbsp; <em>Show that we can help each other</em></p>
+
+          <!-- TREASURE HUNT -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag">FMS Activity 1</div>
+              <h4>🏅 Treasure Hunt</h4>
+              <p class="activity-meta">FMS: Skipping, Hopping</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>15 x 15 yd. grid</li>
+                <li>12 orange disc cones placed randomly throughout the grid</li>
+                <li>6 blue (or other color) disc cones for the progression</li>
+                <li>All players are required to play within the grid</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>Lay out orange cones only to start</li>
+                <li>Start players at one corner cone</li>
+                <li>Players "skip" around the grid (prioritize technique) collecting as many cones (gold coins) as
+                  possible</li>
+                <li>Once all cones are picked up, the player with the most cones wins</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Add blue (or other color) cones — players must "hop" over these special cones before picking them up
+                </li>
+                <li>Special cones are worth 100 points each!</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Skipping</h6>
+                  <ul>
+                    <li>Step forward onto front foot and hop upward</li>
+                    <li>Opposite leg: lift knee sharply upward in front of body</li>
+                    <li>Use arms for balance and to create upward movement</li>
+                    <li>Non-supporting leg pushed down to floor and straightened</li>
+                    <li>Land softly after each skip to avoid injury</li>
+                  </ul>
+                </div>
+                <div class="fms-group">
+                  <h6>Hopping</h6>
+                  <ul>
+                    <li>Lift one leg, bent at the knee</li>
+                    <li>Head up, looking forward — head and trunk stable</li>
+                    <li>Bend knee of supporting leg</li>
+                    <li>Leg straightens to push off</li>
+                    <li>Swing arms back, forward and upward</li>
+                    <li>Arms continue to move upward as you jump</li>
+                    <li>Push from toes to take off</li>
+                    <li>Land softly, bending the knee</li>
+                    <li>Take off and land on the same foot</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=50" target="_blank">📄 Detailed
+                Activity Instructions (Page 50)</a>
+            </div>
+          </div>
+
+          <!-- BUMPER BALL -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#2e7d32;">Game-like Activity 2</div>
+              <h4>💥 Bumper Ball</h4>
+              <p class="activity-meta">Emphasis: Targets, Direction, Competition and Rules</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>30 x 15 yd. field with goals marked with flags or tall cones at either end</li>
+                <li>Two teams</li>
+                <li>Parents standing on all four sides as "bumpers"</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>Parents stand on the touchlines and goal lines to stop the ball going out of play</li>
+                <li>Ball stays in play — no corners, goal kicks, or throw-ins needed</li>
+                <li>Keep score and give teams colorful, fun names!</li>
+              </ul>
+              <p class="act-reflection">💬 How did we help our teammates in this game?</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Remove parents from either the goal line or touchline to gradually introduce throw-ins, corners, or
+                  goal kicks</li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=77" target="_blank">📄 Detailed
+                Activity Instructions (Page 77)</a>
+            </div>
+          </div>
+
+          <!-- THE BIG MATCH -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#6a1b9a;">Activity 3</div>
+              <h4>🏆 The Big Match</h4>
+              <p class="activity-meta">Emphasis: 3v3</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>Small-sided field with small goals (30 x 15 yd. grid)</li>
+                <li>Two teams of three — scrimmage vests and colorful team names</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>3v3 game to goal with simple rules: goals, free-kicks, kick-offs, ball in/out of play, throw-ins
+                </li>
+                <li>Have two halves and switch ends</li>
+                <li>"New Ball" restart — opponents 3 yards away; willing parents help manage balls</li>
+                <li>Don't enforce strict rules; simply introduce them and keep the game flowing</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Ask players to find a space and freeze when the ball goes out</li>
+                <li>Give ball to the player with most space or fewest touches — allow a few seconds toward goal before
+                  others move freely</li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank">📄 Detailed
+                Activity Instructions (Page 76)</a>
+            </div>
+          </div>
+
+          <p><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=28" target="_blank">📄 View Session 4
+              in Manual (Page 28)</a></p>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+       SESSION 5
+       ═══════════════════════════════════════════════════════════ -->
+        <div id="session5" style="margin-top:36px;">
+          <h3 class="sub-title">Session 5 (Week 5)</h3>
+          <p><strong>SEL Theme: Interpersonal Skills</strong> &nbsp;•&nbsp; <em>Find ways to self-calm (count to 5, ask
+              to sit down)</em></p>
+
+          <!-- ICE CREAM CONES -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag">FMS Activity 1</div>
+              <h4>🍦 Ice Cream Cones</h4>
+              <p class="activity-meta">FMS: Running, Balance</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>15 x 15 yd. grid</li>
+                <li>Numerous tall cones, numerous soccer balls, numerous scrimmage vests (to secure ball), one disc cone
+                  per player</li>
+                <li>Players line up on opposite end lines by a starting disc cone</li>
+                <li>At the halfway mark, randomly place tall cones atop balls atop scrimmage vests to create "ice cream
+                  cones" — mark this channel</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>Give both sides team names</li>
+                <li>On Leader command, players run to the middle, pick up a cone and ball to make an "ice cream cone"
+                  (parents help as needed), and carry it back to their starting cone</li>
+                <li>Play continues until all balls have been collected</li>
+                <li>Count how many each player collects</li>
+              </ul>
+              <p class="act-reflection">💬 Why is it important to stay calm when you're getting too excited? You can
+                drop the ice cream out of the cone!</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Vary the distance</li>
+                <li>Players dribble the ball back</li>
+                <li>Add a FMS challenge on the way back: stop and balance on one leg for 5 seconds</li>
+                <li>The ice cream scoop is "freezing" — players must throw it in the air and catch it on the way back
+                </li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Running</h6>
+                  <ul>
+                    <li>Head up, eyes forward</li>
+                    <li>Head and body stable</li>
+                    <li>Body leans slightly forward</li>
+                    <li>Move arms back and forth</li>
+                    <li>Relaxed shoulders with elbows bent 90°</li>
+                    <li>High knees and heels to bottom</li>
+                    <li>Opposite arm to opposite leg</li>
+                    <li>Drive from balls of feet and land on heels</li>
+                    <li>Stay on narrow path</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=51" target="_blank">📄 Detailed
+                Activity Instructions (Page 51)</a>
+            </div>
+          </div>
+
+          <!-- SLIPPERY SNAKE -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#2e7d32;">Game-like Activity 2</div>
+              <h4>🐍 Slippery Snake</h4>
+              <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Balancing</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>20 x 20 yd. grid with 4 or more cones</li>
+                <li>1 ball per player, spare balls</li>
+                <li>All players are required to play within the grid</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>All players form a snake-like line; each player has a ball at their feet and dribbles to follow the
+                  lead player (head of the snake)</li>
+                <li>When the Leader yells "Shed Your Skin!" the player at the end of the snake dribbles forward and
+                  becomes the new front of the snake</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Limit players to only use L foot, R foot, outside of R or L, or inside of both feet</li>
+                <li>Ensure all players become the head of the snake at one time or another</li>
+                <li>Have players add their favorite soccer fake (move) when they are head of the snake for others to
+                  copy</li>
+                <li>Add FMS commands: Stop, balance on left leg, Go!</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Balancing</h6>
+                  <ul>
+                    <li>Body stable and weight over base</li>
+                    <li>Eyes and head focused forward</li>
+                    <li>Leg raised off ground and not touching supporting leg</li>
+                    <li>Supporting leg still and foot flat on contact point</li>
+                    <li>Arms out to the side at shoulder height for counter balance</li>
+                    <li>Tighten muscles to gain balance and stability</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=58" target="_blank">📄 Detailed
+                Activity Instructions (Page 58)</a>
+            </div>
+          </div>
+
+          <!-- THE BIG MATCH -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#6a1b9a;">Activity 3</div>
+              <h4>🏆 The Big Match</h4>
+              <p class="activity-meta">Emphasis: 3v3</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>Small-sided field with small goals (30 x 15 yd. grid)</li>
+                <li>Two teams of three — scrimmage vests and colorful team names</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>3v3 game to goal with simple rules: goals, free-kicks, kick-offs, ball in/out of play, throw-ins
+                </li>
+                <li>Have two halves and switch ends</li>
+                <li>"New Ball" restart — opponents 3 yards away; willing parents help manage balls</li>
+                <li>Don't enforce strict rules; simply introduce them and keep the game flowing</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Ask players to find a space and freeze when the ball goes out</li>
+                <li>Give ball to the player with most space or fewest touches — allow a few seconds toward goal before
+                  others move freely</li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank">📄 Detailed
+                Activity Instructions (Page 76)</a>
+            </div>
+          </div>
+
+          <p><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=29" target="_blank">📄 View Session 5
+              in Manual (Page 29)</a></p>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════════════════════════
+       SESSION 6
+       ═══════════════════════════════════════════════════════════ -->
+        <div id="session6" style="margin-top:36px;">
+          <h3 class="sub-title">Session 6 (Week 6)</h3>
+          <p><strong>SEL Theme: Decision Making</strong> &nbsp;•&nbsp; <em>Understanding we all control our own choices
+              (taking turns, fixing mistakes)</em></p>
+
+          <!-- HUNTERS AND HUNTED -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag">FMS Activity 1</div>
+              <h4>🏹 Hunters and Hunted</h4>
+              <p class="activity-meta">FMS: Running, Twisting, Pivoting, Dodging</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>15 x 10 yd. grid (the "woods")</li>
+                <li>Two flags (trees) placed 5 yards outside the grid on either sideline</li>
+                <li>Two teams: hunters and hunted</li>
+                <li>2 sets of scrimmage vests (tails)</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>Players tuck tails into the back of their shorts and line up on opposite sidelines</li>
+                <li>On Leader command, hunters chase the hunted and try to grab tails</li>
+                <li>Hunted use twists, pivots and dodging to escape</li>
+                <li>If a hunter catches a hunted player, they throw the tail to the ground and chase another</li>
+                <li>If caught, the player runs outside the grid, around the flag (tree), back into the grid to retrieve
+                  their tail and rejoin</li>
+                <li>Play for 1 minute, break for 30 seconds; continue for a few rounds</li>
+                <li>Change hunters and hunted between rounds</li>
+              </ul>
+              <p class="act-reflection">💬 How did you choose who to chase?</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Players dribble a ball</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Running</h6>
+                  <ul>
+                    <li>Head up, eyes forward</li>
+                    <li>Head and body stable</li>
+                    <li>Body leans slightly forward</li>
+                    <li>Move arms back and forth</li>
+                    <li>Relaxed shoulders with elbows bent 90°</li>
+                    <li>High knees and heels to bottom</li>
+                    <li>Opposite arm to opposite leg</li>
+                    <li>Drive from balls of feet and land on heels</li>
+                    <li>Stay on narrow path</li>
+                  </ul>
+                </div>
+                <div class="fms-group">
+                  <h6>Twisting / Pivoting</h6>
+                  <ul>
+                    <li>While turning, plant one foot or keep one foot of the body stable</li>
+                    <li>Push off with the other foot to turn</li>
+                    <li>Bend knees slightly</li>
+                    <li>Use arms — move them in the direction of rotation</li>
+                    <li>While turning, head is focused forward and in line with body</li>
+                    <li>Step forward for a forward pivot; step back for a backward pivot</li>
+                  </ul>
+                </div>
+                <div class="fms-group">
+                  <h6>Dodging</h6>
+                  <ul>
+                    <li>Head and eyes focused forward</li>
+                    <li>Plant one foot and push to change direction</li>
+                    <li>Bend knees, getting into a low body position</li>
+                    <li>Step and lean one way, then move in the other direction — all in one action</li>
+                    <li>Fake with head and shoulders</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=47" target="_blank">📄 Detailed
+                Activity Instructions (Page 47)</a>
+            </div>
+          </div>
+
+          <!-- BIG BAD BEAR -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#2e7d32;">Game-like Activity 2</div>
+              <h4>🐻 Big Bad Bear</h4>
+              <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Twisting, Pivoting, Dodging</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>15 x 15 yd. grid (4 cones for grid, 8 cones for two caves)</li>
+                <li>Create two 3 x 3 yd. caves within the grid</li>
+                <li>Ball per player</li>
+                <li>All players must stay within the grid</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>The Leader is the "Big Bad Bear" (always growling!) and tries to capture players as they dribble
+                  around the area</li>
+                <li>Players are safe inside a cave — but can only stay 10 seconds, then must move to the other cave</li>
+                <li>Captured players become "Wee Bad Bears" and help catch remaining players</li>
+                <li>Last free player wins!</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Only 1 player in a cave at a time</li>
+                <li>While in the cave, players must perform a FMS task (balance on one leg for 5 seconds, etc.) before
+                  they exit</li>
+                <li>All Bears must hold hands (or a scrimmage vest) while trying to capture remaining players</li>
+                <li>Play without the balls</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">💪 FMS Points</div>
+              <div class="fms-grid">
+                <div class="fms-group">
+                  <h6>Twisting / Pivoting</h6>
+                  <ul>
+                    <li>While turning, plant one foot or keep one foot of the body stable</li>
+                    <li>Push off with the other foot to turn</li>
+                    <li>Bend knees slightly</li>
+                    <li>Use arms — move them in the direction of rotation</li>
+                    <li>While turning, head is focused forward and in line with body</li>
+                    <li>Step forward for a forward pivot; step back for a backward pivot</li>
+                  </ul>
+                </div>
+                <div class="fms-group">
+                  <h6>Dodging</h6>
+                  <ul>
+                    <li>Head and eyes focused forward</li>
+                    <li>Plant one foot and push to change direction</li>
+                    <li>Bend knees, getting into a low body position</li>
+                    <li>Step and lean one way, then move in the other direction — all in one action</li>
+                    <li>Fake with head and shoulders</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=59" target="_blank">📄 Detailed
+                Activity Instructions (Page 59)</a>
+            </div>
+          </div>
+
+          <!-- THE BIG MATCH -->
+          <div class="activity-full">
+            <div class="activity-full-header">
+              <div class="tag" style="background:#6a1b9a;">Activity 3</div>
+              <h4>🏆 The Big Match</h4>
+              <p class="activity-meta">Emphasis: 3v3</p>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <ul>
+                <li>Small-sided field with small goals (30 x 15 yd. grid)</li>
+                <li>Two teams of three — scrimmage vests and colorful team names</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">🎮 How the Game is Played</div>
+              <ul>
+                <li>3v3 game to goal with simple rules: goals, free-kicks, kick-offs, ball in/out of play, throw-ins
+                </li>
+                <li>Have two halves and switch ends</li>
+                <li>"New Ball" restart — opponents 3 yards away; willing parents help manage balls</li>
+                <li>Don't enforce strict rules; simply introduce them and keep the game flowing</li>
+              </ul>
+            </div>
+            <div class="act-section">
+              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <ul>
+                <li>Ask players to find a space and freeze when the ball goes out</li>
+                <li>Give ball to the player with most space or fewest touches — allow a few seconds toward goal before
+                  others move freely</li>
+              </ul>
+            </div>
+            <div class="act-footer">
+              <a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank">📄 Detailed
+                Activity Instructions (Page 76)</a>
+            </div>
+          </div>
+
+          <p><a class="btn-link" href="https://online.fliphtml5.com/vuwic/hbxc/#p=30" target="_blank">📄 View Session 6
+              in Manual (Page 30)</a></p>
+        </div>
+
+      </div><!-- /sessions -->
+
+      <hr class="divider">
+
+      <!-- TRAINING -->
+      <div class="section" id="training">
+        <h2 class="section-title">Kickstart Leader Training</h2>
+        <p>For Playground, Schoolyard, and Kickstart coaching, you are required to complete the <strong>Kickstart Soccer
+            Play Leader – Full Online Course</strong> through AYSOU.</p>
+
+        <h3 class="sub-title">How to Enroll</h3>
+        <ol class="steps">
+          <li>Log in to your Sports Connect account at <a href="https://www.ayso138.org"
+              target="_blank">www.ayso138.org</a>.</li>
+          <li>Click <strong>My Account</strong> if needed.</li>
+          <li>Click <strong>AYSOU</strong> in the left menu.</li>
+          <li>Once <strong>AYSOU</strong> loads, click <strong>Training Library</strong>.</li>
+          <li>Open the <strong>Coaches</strong> card.</li>
+          <li>Click <strong>Enroll</strong> under <em><strong>Kickstart Soccer Play Leader – Full Online
+                Course</strong></em> and
+            complete the course.</li>
+        </ol>
+
+        <div class="callout callout-yellow">
+          <span>⚠️ Not seeing AYSOU in the menu? Make sure you are logged in and your volunteer role is assigned. Contact
+            your Coach Administrator if you need help.</span>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">     
+        Questions or problems with this page? Email <a href="mailto:ayso138.ca@gmail.com">ayso138.ca@gmail.com</a>
+      </div>
+
+    </div><!-- end card -->
+  </div><!-- end page-wrap -->
+
+
+</body>
+
+</html>
