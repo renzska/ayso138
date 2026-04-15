@@ -516,7 +516,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.7px;
-      color: #888;
+      color: #555;
       margin-bottom: 8px;
     }
 
@@ -593,8 +593,11 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
-    .session-wrapper h2.section-title {
-      margin-top: 0;
+    .session-wrapper > h2.section-title {
+      margin-top: -12px;
+      margin-left: -16px;
+      margin-right: -16px;
+      border-radius: 10px 10px 0 0;
     }
 
     .session-wrapper>p:first-of-type {
@@ -747,7 +750,7 @@
       font-size: 14px;
       padding: 4px 10px;
       border-radius: 4px;
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .session-wrapper>p>a:not(.btn-link):hover {
@@ -789,6 +792,86 @@
 
     a.manual-open-link:hover {
       background: #dce8fb;
+    }
+
+    /* ACTIVITY PAGE REF — lighter bar below blue header for page link */
+    .activity-page-ref {
+      padding: 8px 20px;
+      background: #eef3fb;
+      border-bottom: 1px solid #dde2ea;
+      font-family: Arial;
+      font-size: 14px;
+    }
+
+    .activity-page-ref a,
+    .activity-page-ref a:link,
+    .activity-page-ref a:visited,
+    .activity-page-ref a:active {
+      color: #08529f !important;
+      text-decoration: none !important;
+      font-weight: 600;
+    }
+
+    .activity-page-ref a:hover {
+      text-decoration: underline !important;
+    }
+
+    /* INFO CARDS — replaces tables for mobile-friendly display */
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .info-card {
+      background: #fff;
+      border: 1px solid #dde2ea;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .info-card-header {
+      background: #08529f;
+      color: #fff;
+      font-family: Arial;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 9px 14px;
+      line-height: 1.3;
+    }
+
+    .info-card-meta {
+      background: #eef3fb;
+      color: #08529f;
+      font-family: Arial;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-bottom: 1px solid #c5d8f5;
+      letter-spacing: 0.02em;
+    }
+
+    .info-card-body {
+      padding: 10px 14px;
+      font-family: Arial;
+      font-size: 15px;
+      color: #444;
+      line-height: 1.55;
+    }
+
+    .info-card-body ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .info-card-body ul li {
+      margin-bottom: 6px;
+    }
+
+    .info-card-body ul li:last-child {
+      margin-bottom: 0;
     }
 
     /* BASE LINK COLOR OVERRIDE — prevents parent page styles from bleeding in */
@@ -870,8 +953,7 @@
       <div class="section" id="sessions">
         <h2 class="section-title">Session Plans</h2>
         <p>Please review <strong>pages 1–24</strong> of the manual before your first session. This covers the program
-          philosophy, session structure, and foundational activities.</p>
-        <p>Each session follows the same three-activity format. The SEL theme changes each week.</p>
+          philosophy, session structure, and foundational activities. Each session follows the same three-activity format: Fundamental Motor Skills (FMS) Activity, Game-like Activity, and The Big Match. The Social-Emotional Learning (SEL) theme changes each week.</p>
 
 
         <!-- ═══════════════════════════════════════════════════════════
@@ -879,19 +961,20 @@
              ═══════════════════════════════════════════════════════════ -->
         <div id="session1" class="session-wrapper" style="margin-top:28px;">
           <h2 class="section-title">Session 1 (Week 1)</h2>
-          <p><strong>SEL Theme: Social Awareness</strong> &nbsp;•&nbsp; <em>Recognize other people's feelings</em></p>
+          <p><strong>Social-Emotional Learning (SEL) Theme: Social Awareness</strong> &nbsp;•&nbsp; <em>Recognize other people's feelings</em></p>
 
           <!-- WEB-SLINGER -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 1: FMS</div>
-              <h4>🕸️ Web-Slinger</h4>
-              <p class="activity-meta">FMS: Running &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=45" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 45</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 1: FMS</div>
+                <h4>🕸️ Web-Slinger</h4>
+                <p class="activity-meta">FMS: Running</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=45" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 45</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>15 x 15 yd. grid with 4 or more cones</li>
                 <li>Scrimmage vests (webs)</li>
@@ -900,7 +983,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>One player is the Web-Slinger; all others are villains</li>
                 <li>Web-Slinger has numerous scrimmage vests (webs) and must chase villains, throw a web, and hit a
@@ -913,7 +996,7 @@
               <p class="act-reflection">💬 Who likes being the Web-Slinger? Why? Who doesn't? Why?</p>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>If a player runs out or is chased out of the area, they are frozen when they come back in</li>
                 <li>Players can dribble a ball and the Web-Slinger must web their ball to get them out</li>
@@ -944,15 +1027,16 @@
 
           <!-- ANY GOAL -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 2: Game-Like</div>
-              <h4>⚽ Any Goal</h4>
-              <p class="activity-meta">Emphasis: Score! &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=71" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 71</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 2: Game-Like</div>
+                <h4>⚽ Any Goal</h4>
+                <p class="activity-meta">Emphasis: Score!</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=71" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 71</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>20 x 15 yd. grid</li>
                 <li>A central goal on each end line</li>
@@ -960,7 +1044,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>Leader rolls numerous balls onto the field</li>
                 <li>Players collect a ball and score in any goal</li>
@@ -969,7 +1053,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Once all balls are in the goals, reset and begin again — players must now score in a different goal
                 </li>
@@ -981,22 +1065,23 @@
 
           <!-- THE BIG MATCH — Session 1 (full instructions; all other sessions link back here) -->
           <details class="activity-full" id="session1-big-match">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 3</div>
-              <h4>🏆 The Big Match</h4>
-              <p class="activity-meta">Emphasis: 2v2 or 3v3 &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 76</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 3</div>
+                <h4>🏆 The Big Match</h4>
+                <p class="activity-meta">Emphasis: 2v2 or 3v3</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 76</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>Small-sided field with small goals (roughly 30 x 20 yd)</li>
                 <li>Two teams of two or three — scrimmage pinnies</li>
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>3v3 game with simple rules: goals, free-kicks (kicking/tripping), kick-offs (start of game
                   and after goals), ball in/out of play (touchline and goal line), kick-ins</li>
@@ -1007,7 +1092,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>To start or restart, ask players to find a space and freeze when the ball goes out of play</li>
                 <li>Give the ball to the player in most space, or one who hasn't had many touches — allow them a few
@@ -1028,20 +1113,21 @@
              ═══════════════════════════════════════════════════════════ -->
         <div id="session2" class="session-wrapper" style="margin-top:20px;">
           <h2 class="section-title">Session 2 (Week 2)</h2>
-          <p><strong>SEL Theme: Self-Awareness</strong> &nbsp;•&nbsp; <em>Identify and manage emotions and behaviors
+          <p><strong>Social-Emotional Learning (SEL) Theme: Self-Awareness</strong> &nbsp;•&nbsp; <em>Identify and manage emotions and behaviors
               (happy, sad, excited, fun, etc.)</em></p>
 
           <!-- COACH SAYS -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 1: FMS</div>
-              <h4>🗣️ Coach Says</h4>
-              <p class="activity-meta">FMS: Running, Dodging, Twisting / Pivoting &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=46" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 46</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 1: FMS</div>
+                <h4>🗣️ Coach Says</h4>
+                <p class="activity-meta">FMS: Running, Dodging, Twisting / Pivoting</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=46" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 46</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>15 x 15 yd. grid</li>
                 <li>Ball per player</li>
@@ -1049,7 +1135,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>Leader calls commands: TAKE ONE STEP FORWARD, BALANCE ON RIGHT/LEFT LEG, SIT ON BALL, ONE FOOT ON
                   BALL, SPEED UP, SLOW DOWN, JUMP OVER BALL, etc.</li>
@@ -1058,7 +1144,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Change the command phrase from "Coach Says" to something else (e.g., a player's name, a funny word)
                 </li>
@@ -1068,15 +1154,16 @@
 
           <!-- SHARKS AND MINNOWS -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 2: Game-Like</div>
-              <h4>🦈 Sharks and Minnows</h4>
-              <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Running &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=57" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 57</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 2: Game-Like</div>
+                <h4>🦈 Sharks and Minnows</h4>
+                <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Running</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=57" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 57</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>15 x 15 yd. grid with 4 or more cones</li>
                 <li>1 ball per player</li>
@@ -1085,7 +1172,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>Minnows have a tail (pinnie) tucked in the back of their shorts</li>
                 <li>The Shark (Leader) moves around the grid catching minnows by pulling out their tails</li>
@@ -1097,7 +1184,7 @@
               <p class="act-reflection">💬 Did anyone enjoy this game? Why? Did anyone not enjoy it? Why?</p>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>If caught, minnows become baby sharks</li>
                 <li>Conduct the activity without a ball first, then introduce a ball</li>
@@ -1127,22 +1214,23 @@
 
           <!-- THE BIG MATCH -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 3</div>
-              <h4>🏆 The Big Match</h4>
-              <p class="activity-meta">Emphasis: 2v2 or 3v3 &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 76</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 3</div>
+                <h4>🏆 The Big Match</h4>
+                <p class="activity-meta">Emphasis: 2v2 or 3v3</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 76</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>Small-sided field with small goals (roughly 30 x 20 yd)</li>
                 <li>Two teams of two or three — scrimmage pinnies</li>
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>3v3 game with simple rules: goals, free-kicks (kicking/tripping), kick-offs (start of game
                   and after goals), ball in/out of play (touchline and goal line), kick-ins</li>
@@ -1153,7 +1241,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>To start or restart, ask players to find a space and freeze when the ball goes out of play</li>
                 <li>Give the ball to the player in most space, or one who hasn't had many touches — allow them a few
@@ -1174,20 +1262,21 @@
              ═══════════════════════════════════════════════════════════ -->
         <div id="session3" class="session-wrapper" style="margin-top:20px;">
           <h2 class="section-title">Session 3 (Week 3)</h2>
-          <p><strong>SEL Theme: Interpersonal Skills</strong> &nbsp;•&nbsp; <em>Engage in non-verbal communication with
+          <p><strong>Social-Emotional Learning (SEL) Theme: Interpersonal Skills</strong> &nbsp;•&nbsp; <em>Engage in non-verbal communication with
               each other</em></p>
 
           <!-- FROG JUMPING -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 1: FMS</div>
-              <h4>🐸 Frog Jumping</h4>
-              <p class="activity-meta">FMS: Jumping / Landing and Running &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=52" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 52</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 1: FMS</div>
+                <h4>🐸 Frog Jumping</h4>
+                <p class="activity-meta">FMS: Jumping / Landing and Running</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=52" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 52</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>2 cones to mark a start line</li>
                 <li>Mark four lily pads (placement pads or hula hoops) per row; repeat for 4–5 rows</li>
@@ -1196,7 +1285,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>All children line up in two lines on the start line, facing you at the end line</li>
                 <li>Kids jump like a frog from lily pad to lily pad in their row, then run around the end marker and
@@ -1205,7 +1294,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Ask children to jump in different directions: forwards, backwards, and sideways</li>
                 <li>Increase or decrease distances between lily pads</li>
@@ -1233,15 +1322,16 @@
 
           <!-- BANK ROBBERY -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 2: Game-Like</div>
-              <h4>🏦 Bank Robbery</h4>
-              <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Running, Rolling a Ball &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=69" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 69</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 2: Game-Like</div>
+                <h4>🏦 Bank Robbery</h4>
+                <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Running, Rolling a Ball</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=69" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 69</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>10–12 soccer balls</li>
                 <li>15 x 15 yd. grid with 4 or more cones</li>
@@ -1249,7 +1339,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>All players stand by a corner cone</li>
                 <li>Leader yells "Bank Robbery!" — all players sprint to the center, collect a ball with their feet, and
@@ -1261,7 +1351,7 @@
                 thumbs up.</p>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Limit players to L foot, R foot, outside of R or L, or inside of both feet</li>
                 <li>Add more balls to the center and enlarge the grid</li>
@@ -1292,22 +1382,23 @@
 
           <!-- THE BIG MATCH -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 3</div>
-              <h4>🏆 The Big Match</h4>
-              <p class="activity-meta">Emphasis: 2v2 or 3v3 &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 76</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 3</div>
+                <h4>🏆 The Big Match</h4>
+                <p class="activity-meta">Emphasis: 2v2 or 3v3</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 76</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>Small-sided field with small goals (roughly 30 x 20 yd)</li>
                 <li>Two teams of two or three — scrimmage pinnies</li>
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>3v3 game with simple rules: goals, free-kicks (kicking/tripping), kick-offs (start of game
                   and after goals), ball in/out of play (touchline and goal line), kick-ins</li>
@@ -1318,7 +1409,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>To start or restart, ask players to find a space and freeze when the ball goes out of play</li>
                 <li>Give the ball to the player in most space, or one who hasn't had many touches — allow them a few
@@ -1339,19 +1430,20 @@
              ═══════════════════════════════════════════════════════════ -->
         <div id="session4" class="session-wrapper" style="margin-top:20px;">
           <h2 class="section-title">Session 4 (Week 4)</h2>
-          <p><strong>SEL Theme: Social Awareness</strong> &nbsp;•&nbsp; <em>Show that we can help each other</em></p>
+          <p><strong>Social-Emotional Learning (SEL) Theme: Social Awareness</strong> &nbsp;•&nbsp; <em>Show that we can help each other</em></p>
 
           <!-- TREASURE HUNT -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 1: FMS</div>
-              <h4>🏅 Treasure Hunt</h4>
-              <p class="activity-meta">FMS: Skipping, Hopping &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=50" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 50</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 1: FMS</div>
+                <h4>🏅 Treasure Hunt</h4>
+                <p class="activity-meta">FMS: Skipping, Hopping</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=50" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 50</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>15 x 15 yd. grid</li>
                 <li>12 orange disc cones placed randomly throughout the grid</li>
@@ -1360,7 +1452,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>Lay out orange cones only to start</li>
                 <li>Start players at one corner cone</li>
@@ -1370,7 +1462,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Add blue (or other color) cones — players must "hop" over these special cones before picking them up
                 </li>
@@ -1410,15 +1502,16 @@
 
           <!-- BUMPER BALL -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 2: Game-Like</div>
-              <h4>💥 Bumper Ball</h4>
-              <p class="activity-meta">Emphasis: Targets, Direction, Competition and Rules &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=77" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 77</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 2: Game-Like</div>
+                <h4>💥 Bumper Ball</h4>
+                <p class="activity-meta">Emphasis: Targets, Direction, Competition and Rules</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=77" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 77</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>30 x 15 yd. field with goals marked with flags or tall cones at either end</li>
                 <li>Two teams</li>
@@ -1426,7 +1519,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>Parents stand on the touchlines and goal lines to stop the ball going out of play</li>
                 <li>Ball stays in play — no corners, goal kicks, or throw-ins needed</li>
@@ -1435,7 +1528,7 @@
               <p class="act-reflection">💬 How did we help our teammates in this game?</p>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Remove parents from either the goal line or touchline to gradually introduce throw-ins, corners, or
                   goal kicks</li>
@@ -1445,22 +1538,23 @@
 
           <!-- THE BIG MATCH -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 3</div>
-              <h4>🏆 The Big Match</h4>
-              <p class="activity-meta">Emphasis: 2v2 or 3v3 &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 76</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 3</div>
+                <h4>🏆 The Big Match</h4>
+                <p class="activity-meta">Emphasis: 2v2 or 3v3</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 76</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>Small-sided field with small goals (roughly 30 x 20 yd)</li>
                 <li>Two teams of two or three — scrimmage pinnies</li>
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>3v3 game with simple rules: goals, free-kicks (kicking/tripping), kick-offs (start of game
                   and after goals), ball in/out of play (touchline and goal line), kick-ins</li>
@@ -1471,7 +1565,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>To start or restart, ask players to find a space and freeze when the ball goes out of play</li>
                 <li>Give the ball to the player in most space, or one who hasn't had many touches — allow them a few
@@ -1492,20 +1586,21 @@
              ═══════════════════════════════════════════════════════════ -->
         <div id="session5" class="session-wrapper" style="margin-top:20px;">
           <h2 class="section-title">Session 5 (Week 5)</h2>
-          <p><strong>SEL Theme: Interpersonal Skills</strong> &nbsp;•&nbsp; <em>Find ways to self-calm (count to 5, ask
+          <p><strong>Social-Emotional Learning (SEL) Theme: Interpersonal Skills</strong> &nbsp;•&nbsp; <em>Find ways to self-calm (count to 5, ask
               to sit down)</em></p>
 
           <!-- ICE CREAM CONES -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 1: FMS</div>
-              <h4>🍦 Ice Cream Cones</h4>
-              <p class="activity-meta">FMS: Running, Balance &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=51" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 51</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 1: FMS</div>
+                <h4>🍦 Ice Cream Cones</h4>
+                <p class="activity-meta">FMS: Running, Balance</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=51" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 51</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>15 x 15 yd. grid</li>
                 <li>Numerous tall cones, numerous soccer balls, numerous scrimmage vests (to secure ball), one disc cone
@@ -1516,7 +1611,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>Give both sides team names</li>
                 <li>On Leader command, players run to the middle, pick up a cone and ball to make an "ice cream cone"
@@ -1528,7 +1623,7 @@
                 drop the ice cream out of the cone!</p>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Vary the distance</li>
                 <li>Players dribble the ball back</li>
@@ -1560,15 +1655,16 @@
 
           <!-- SLIPPERY SNAKE -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 2: Game-Like</div>
-              <h4>🐍 Slippery Snake</h4>
-              <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Balancing &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=58" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 58</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 2: Game-Like</div>
+                <h4>🐍 Slippery Snake</h4>
+                <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Balancing</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=58" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 58</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>20 x 20 yd. grid with 4 or more cones</li>
                 <li>1 ball per player, spare balls</li>
@@ -1576,7 +1672,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>All players form a snake-like line; each player has a ball at their feet and dribbles to follow the
                   lead player (head of the snake)</li>
@@ -1585,7 +1681,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Limit players to only use L foot, R foot, outside of R or L, or inside of both feet</li>
                 <li>Ensure all players become the head of the snake at one time or another</li>
@@ -1614,22 +1710,23 @@
 
           <!-- THE BIG MATCH -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 3</div>
-              <h4>🏆 The Big Match</h4>
-              <p class="activity-meta">Emphasis: 2v2 or 3v3 &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 76</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 3</div>
+                <h4>🏆 The Big Match</h4>
+                <p class="activity-meta">Emphasis: 2v2 or 3v3</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 76</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>Small-sided field with small goals (roughly 30 x 20 yd)</li>
                 <li>Two teams of two or three — scrimmage pinnies</li>
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>3v3 game with simple rules: goals, free-kicks (kicking/tripping), kick-offs (start of game
                   and after goals), ball in/out of play (touchline and goal line), kick-ins</li>
@@ -1640,7 +1737,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>To start or restart, ask players to find a space and freeze when the ball goes out of play</li>
                 <li>Give the ball to the player in most space, or one who hasn't had many touches — allow them a few
@@ -1661,20 +1758,21 @@
              ═══════════════════════════════════════════════════════════ -->
         <div id="session6" class="session-wrapper" style="margin-top:20px;">
           <h2 class="section-title">Session 6 (Week 6)</h2>
-          <p><strong>SEL Theme: Decision Making</strong> &nbsp;•&nbsp; <em>Understanding we all control our own choices
+          <p><strong>Social-Emotional Learning (SEL) Theme: Decision Making</strong> &nbsp;•&nbsp; <em>Understanding we all control our own choices
               (taking turns, fixing mistakes)</em></p>
 
           <!-- HUNTERS AND HUNTED -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 1: FMS</div>
-              <h4>🏹 Hunters and Hunted</h4>
-              <p class="activity-meta">FMS: Running, Twisting, Pivoting, Dodging &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=47" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 47</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 1: FMS</div>
+                <h4>🏹 Hunters and Hunted</h4>
+                <p class="activity-meta">FMS: Running, Twisting, Pivoting, Dodging</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=47" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 47</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>15 x 10 yd. grid (the "woods")</li>
                 <li>Two flags (trees) placed 5 yards outside the grid on either sideline</li>
@@ -1683,7 +1781,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>Players tuck tails into the back of their shorts and line up on opposite sidelines</li>
                 <li>On Leader command, hunters chase the hunted and try to grab tails</li>
@@ -1697,7 +1795,7 @@
               <p class="act-reflection">💬 How did you choose who to chase?</p>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Players dribble a ball</li>
               </ul>
@@ -1746,15 +1844,16 @@
 
           <!-- BIG BAD BEAR -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 2: Game-Like</div>
-              <h4>🐻 Big Bad Bear</h4>
-              <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Twisting, Pivoting, Dodging &nbsp;|&nbsp;
-                <a href="https://online.fliphtml5.com/vuwic/hbxc/#p=59" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 59</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 2: Game-Like</div>
+                <h4>🐻 Big Bad Bear</h4>
+                <p class="activity-meta">Technique: Dribbling &nbsp;|&nbsp; FMS: Twisting, Pivoting, Dodging</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=59" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 59</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>15 x 15 yd. grid (4 cones for grid, 8 cones for two caves)</li>
                 <li>Create two 3 x 3 yd. caves within the grid</li>
@@ -1763,7 +1862,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>The Leader is the "Big Bad Bear" (always growling!) and tries to capture players as they dribble
                   around the area</li>
@@ -1773,7 +1872,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>Only 1 player in a cave at a time</li>
                 <li>While in the cave, players must perform a FMS task (balance on one leg for 5 seconds, etc.) before
@@ -1812,22 +1911,23 @@
 
           <!-- THE BIG MATCH -->
           <details class="activity-full">
-            <summary class="activity-full-header">
-              <div class="activity-type-pill">Activity 3</div>
-              <h4>🏆 The Big Match</h4>
-              <p class="activity-meta">Emphasis: 2v2 or 3v3 &nbsp;|&nbsp; <a
-                  href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄
-                  Activity Details – Page 76</a></p>
+            <summary>
+              <div class="activity-full-header">
+                <div class="activity-type-pill">Activity 3</div>
+                <h4>🏆 The Big Match</h4>
+                <p class="activity-meta">Emphasis: 2v2 or 3v3</p>
+              </div>
+              <div class="activity-page-ref"><a href="https://online.fliphtml5.com/vuwic/hbxc/#p=76" target="_blank" rel="noopener noreferrer">📄 Activity Details – Page 76</a></div>
             </summary>
             <div class="act-section">
-              <div class="act-section-title">🎒 Equipment / Organization</div>
+              <div class="act-section-title">Equipment/Organization</div>
               <ul>
                 <li>Small-sided field with small goals (roughly 30 x 20 yd)</li>
                 <li>Two teams of two or three — scrimmage pinnies</li>
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">🎮 How the Game is Played</div>
+              <div class="act-section-title">How the Game is Played</div>
               <ul>
                 <li>3v3 game with simple rules: goals, free-kicks (kicking/tripping), kick-offs (start of game
                   and after goals), ball in/out of play (touchline and goal line), kick-ins</li>
@@ -1838,7 +1938,7 @@
               </ul>
             </div>
             <div class="act-section">
-              <div class="act-section-title">⬆️ Variations / Progressions</div>
+              <div class="act-section-title">Variations/Progressions</div>
               <ul>
                 <li>To start or restart, ask players to find a space and freeze when the ball goes out of play</li>
                 <li>Give the ball to the player in most space, or one who hasn't had many touches — allow them a few
@@ -1918,24 +2018,24 @@
           </thead>
           <tbody>
             <tr>
-              <td><strong>Activation &amp; Group Forming</strong></td>
+              <td><strong>Arrival Activity</strong></td>
               <td>~12 min</td>
-              <td>Activation game as children arrive and introduction to the session activities by Program Leaders</td>
+              <td>Activity for arriving children<br>Introduction to the session</td>
             </tr>
             <tr>
               <td><strong>FMS Activity</strong></td>
               <td>15 min</td>
-              <td>~12 min active + 3 min breaks</td>
+              <td>~12-min active, ~3-min breaks</td>
             </tr>
             <tr>
               <td><strong>Game-like Activity</strong></td>
               <td>15 min</td>
-              <td>~12 min active + 3 min breaks</td>
+              <td>~12-min active, ~3-min breaks</td>
             </tr>
             <tr>
               <td><strong>Big Match</strong></td>
               <td>18 min</td>
-              <td>~4 quarters x 3 min active with 3 x 2 min breaks</td>
+              <td>4 quarters (~3-min each) with 2-min breaks between</td>
             </tr>
           </tbody>
         </table>
@@ -2031,46 +2131,24 @@
           <span>✅ Use this checklist each week to stay organized and keep your families informed.</span>
         </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Who</th>
-              <th>When</th>
-              <th>Task</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Head Coach</td>
-              <td><strong>Start of season</strong></td>
-              <td>Message your group roster and confirm every parent has responded. If you haven't received a response
-                by the Thursday before the first session, notify your Coach Administrator.</td>
-            </tr>
-            <tr>
-              <td>Head Coach</td>
-              <td><strong>Start of season</strong></td>
-              <td>Bring treats for your group (6–8 kids) on the first session day, if not already assigned to someone
-                else earlier in the week.</td>
-            </tr>
-            <tr>
-              <td>Head Coach or Team Manager</td>
-              <td><strong>Start of season</strong></td>
-              <td>Assign treats for the rest of the season (or let parents volunteer). Assigning is easier; parents can
-                trade between themselves.</td>
-            </tr>
-            <tr>
-              <td>Head Coach or Team Manager</td>
-              <td><strong>Every Thursday</strong></td>
-              <td>Send a reminder message to your group with: session time, jersey color, and treat assignment for the
-                week.</td>
-            </tr>
-            <tr>
-              <td>Head Coach</td>
-              <td><strong>If unavailable</strong></td>
-              <td>Let your Coach Administrator know as soon as possible so coverage can be arranged.</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-card-header">Start of Season</div>
+            <div class="info-card-body">
+              <ul>
+                <li><strong>Head Coach:</strong> Message your group roster and confirm every parent has responded. If you haven't received a response by the Thursday before the first session, notify your Coach Administrator. Also bring treats for your group (6–8 kids) on the first session day, if not already assigned to someone else.</li>
+                <li><strong>Head Coach or Team Manager:</strong> Assign treats for the rest of the season (or let parents volunteer). Assigning is easier; parents can trade between themselves.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-header">Every Thursday</div>
+            <div class="info-card-body"><strong>Head Coach or Team Manager:</strong> Send a reminder message to your group with: session time, jersey color, and treat assignment for the week.</div>
+          </div>
+        <div class="callout callout-yellow">
+          <span>⚠️ <strong>Head Coach — If you can't make it:</strong> Let your Coach Administrator know as soon as possible so coverage can be arranged.</span>
+        </div>
+        </div>
         <a href="#top" class="back-to-top">↑ Top</a>
       </div>
 
@@ -2080,28 +2158,20 @@
       <div class="section" id="roles">
         <h2 class="section-title">Roles &amp; Communication</h2>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Role</th>
-              <th>Responsibility</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Program Leader (Head Coach)</strong></td>
-              <td>You are running the session. Make decisions, adjust activities, communicate with parents.</td>
-            </tr>
-            <tr>
-              <td><strong>Assistant Coach / Activity Leader</strong></td>
-              <td>Support the Program Leader as needed. Follow their lead.</td>
-            </tr>
-            <tr>
-              <td><strong>Team Manager</strong></td>
-              <td>Send Thursday reminders, manage treat schedule, handle parent communication.</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-card-header">Program Leader (Head Coach)</div>
+            <div class="info-card-body">You are running the session. Make decisions, adjust activities, communicate with parents.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-header">Activity Leader (Assistant Coach)</div>
+            <div class="info-card-body">Support the Program Leader as needed. Follow their lead.</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-header">Team Manager</div>
+            <div class="info-card-body">Send Thursday reminders, manage treat schedule, handle parent communication.</div>
+          </div>
+        </div>
 
         <h3 class="sub-title">First Saturday Morning Introduction</h3>
         <p>The Coach Administrator will open with a brief introduction to parents at the start of the first session of
@@ -2109,9 +2179,7 @@
 
         <h3 class="sub-title">If You Need Help</h3>
         <ul class="bullets">
-          <li>Text your Coach Administrator directly and they will respond as quickly as possible.</li>
-          <li>If you know you will be unavailable on a Saturday, please notify the Coach Administrator as soon as
-            possible so coverage can be arranged.</li>
+          <li>Text your Coach Administrator directly and they will respond as quickly as possible.</li>          
           <li>After each session, share any feedback, suggestions, or questions for the following week.</li>
         </ul>
 
