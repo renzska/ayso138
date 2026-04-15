@@ -237,6 +237,50 @@
       }
     }
 
+    /* REFUNDABLE NOTE */
+    a.refundable-note,
+    a.refundable-note:link,
+    a.refundable-note:visited,
+    a.refundable-note:active {
+      display: inline-block;
+      background: #e8f5e9;
+      border: 1px solid #2e7d32;
+      color: #1b5e20 !important;
+      font-family: Arial;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-decoration: none !important;
+      white-space: nowrap;
+    }
+
+    a.refundable-note:hover {
+      background: #c8e6c9;
+    }
+
+    /* TRANSFERABLE NOTE */
+    a.transferable-note,
+    a.transferable-note:link,
+    a.transferable-note:visited,
+    a.transferable-note:active {
+      display: inline-block;
+      background: #fffde7;
+      border: 1px solid #f9a825;
+      color: #b45309 !important;
+      font-family: Arial;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-decoration: none !important;
+      white-space: nowrap;
+    }
+
+    a.transferable-note:hover {
+      background: #fff8c4;
+    }
+
     /* POLICY BOX */
     .policy-box {
       border: 1px solid #c5d8f5;
@@ -306,17 +350,17 @@
             <tr>
               <td>AYSO National Player Membership Fee</td>
               <td>$25.00</td>
-              <td class="status-no">No</td>
+              <td class="status-no">No &nbsp;<a href="#national-fee" class="transferable-note">Transferable</a></td>
             </tr>
             <tr>
-              <td>Uniform Fee</td>
+              <td>Player Equipment</td>
               <td>Varies</td>
-              <td class="status-yes">Until registration closes</td>
+              <td class="status-yes">Yes &nbsp;<a href="#equipment-fee" class="refundable-note">Until registration closes</a></td>
             </tr>
             <tr>
               <td>Division Fee (Region 138)</td>
               <td>Varies</td>
-              <td class="status-yes">Until registration closes</td>
+              <td class="status-yes">Yes &nbsp;<a href="#division-fee" class="refundable-note">Until registration closes</a></td>
             </tr>
           </tbody>
         </table>
@@ -360,23 +404,21 @@
 
         <hr class="divider"> -->
 
-        <div class="callout callout-yellow">
+        <div class="callout callout-yellow" id="national-fee">
           <p><strong>AYSO National Player Membership Fee — $25.00 (Non-Refundable)</strong></p>
           <p>This fee is paid directly to the AYSO National organization and <strong>does not pass through Region 138's account</strong>.
             However, this membership is <strong>transferable</strong> to another AYSO Region or program, such as United
             or EXTRA.</p>
         </div>
 
-        <div class="callout callout-green">
-          <p><strong>Uniform Fee — Varies (Refundable until registration closes)</strong></p>
-          <p>These funds, used to purchase socks, shin guards, and jerseys, are <strong>not retained by the region</strong> — they are forwarded directly to our uniform manufacturer.
-            Because of this, we are <strong>unable to refund the uniform portion</strong> of your registration.</p>
+        <div class="callout callout-green" id="equipment-fee">
+          <p><strong>Player Equipment — Varies (Refundable until registration closes)</strong></p>
+          <p>The player equipment fee, used to purchase socks, shin guards, and jerseys, is refundable <strong>until registration closes</strong>. After registration closes, this fee is no longer refundable.</p>
         </div>
 
-        <div class="callout callout-green">
+        <div class="callout callout-green" id="division-fee">
           <p><strong>Division Fee — Varies (Refundable until registration closes)</strong></p>
-          <p>The <strong>only refundable portion</strong> of the registration fee is the division fee charged by Region
-            138, which is used to support and operate the local program, including program-related expenses.</p>
+          <p>The division fee charged by Region 138 supports and operates the local program, including program-related expenses. It is refundable <strong>until registration closes</strong>. After registration closes, this fee is no longer refundable.</p>
         </div>
 
         <div class="callout callout-blue">
