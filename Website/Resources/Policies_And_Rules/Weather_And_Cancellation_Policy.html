@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather and Cancellation Policy | AYSO Region 138</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: Arial;
+      font-weight: 700;
+    }
+
+    h4 {
+      color: #fff;
+    }
+
+    p {
+      font-family: Arial;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #444444;
+    }
+
+    .page-wrap {
+      padding: 0 16px 48px;
+      font-family: Arial;
+      font-size: 16px;
+      color: #444444;
+    }
+
+    /* HEADER */
+    .header {
+      background: #08529f;
+      border-radius: 0;
+      padding: 16px;
+    }
+
+    .header h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      font-family: Arial;
+      color: #fff;
+      line-height: 1.2;
+      padding: 0px !important;
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 16px;
+      font-family: Arial;
+      color: #a8c4e0;
+    }
+
+    .card {
+      background: transparent;
+      border: none;
+      padding: 24px 0 0;
+      font-family: Arial;
+      font-size: 16px;
+      color: #444444;
+    }
+
+    /* SECTION HEADINGS */
+    h2.section-title {
+      font-size: 16px;
+      font-family: Arial;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: #08529f;
+      padding: 10px 16px;
+      margin: 0 0 16px;
+      border-radius: 0;
+    }
+
+    /* CALLOUT BOXES */
+    .callout {
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 8px 0;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .callout-blue {
+      background: #e8f0fe;
+      border-left: 4px solid #08529f;
+    }
+
+    .callout-green {
+      background: #e8f5e9;
+      border-left: 4px solid #2e7d32;
+    }
+
+    .callout-yellow {
+      background: #fffde7;
+      border-left: 4px solid #f9a825;
+    }
+
+    .callout-red {
+      background: #fce4e4;
+      border-left: 4px solid #ef3e35;
+    }
+
+    .callout p {
+      margin: 0;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .callout p + p {
+      margin-top: 8px;
+    }
+
+    /* LISTS */
+    ul.bullets {
+      margin: 0 0 12px 20px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 6px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial;
+      font-size: 16px;
+      margin: 12px 0;
+    }
+
+    th {
+      background: #08529f;
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    tr:nth-child(even) td {
+      background: #f4f7fc;
+    }
+
+    /* DIVIDER */
+    hr.divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 32px 0;
+    }
+
+    /* BACK TO TOP */
+    a.back-to-top {
+      display: inline-block;
+      font-family: Arial;
+      font-size: 14px;
+      color: #08529f !important;
+      text-decoration: none;
+      margin-top: 12px;
+    }
+
+    a.back-to-top:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      font-family: Arial;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .footer strong {
+      color: #222;
+      font-family: Arial;
+    }
+
+    .footer a {
+      color: #2a7de1 !important;
+      text-decoration: none;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 20px 16px;
+      }
+
+      .card {
+        padding: 16px 0 0;
+      }
+    }
+
+    /* TABLE OF CONTENTS */
+    .toc {
+      background: #f0f5ff;
+      border: 1px solid #c5d8f5;
+      border-left: 5px solid #08529f;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 0 0 16px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .toc h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-family: Arial;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #08529f;
+    }
+
+    .toc ul,
+    .toc ol {
+      margin: 0;
+      padding-left: 20px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .toc li {
+      margin-bottom: 5px;
+      font-family: Arial;
+      font-size: 16px;
+    }
+
+    .toc a,
+    .toc a:link,
+    .toc a:visited,
+    .toc a:active,
+    .toc a:hover {
+      color: #2a7de1 !important;
+      text-decoration: none !important;
+    }
+
+    .toc a:hover {
+      text-decoration: underline !important;
+    }
+
+    .spacer {
+      margin-top: 16px;
+    }
+
+    /* POLICY BOX */
+    .policy-box {
+      border: 1px solid #c5d8f5;
+      border-radius: 8px;
+      padding: 16px 20px;
+      background: #f8faff;
+    }
+
+    .policy-box p {
+      margin: 0 0 10px;
+    }
+
+    .policy-box p:last-child {
+      margin: 0;
+    }
+
+    /* BASE LINK COLOR OVERRIDE */
+    .page-wrap a:link,
+    .page-wrap a:visited,
+    .page-wrap a:active {
+      color: #08529f !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrap">
+
+    <!-- HEADER -->
+    <div class="header" id="top">
+      <h1>Weather and Cancellation Policy</h1>
+    </div>
+
+    <div class="card">
+
+      <!-- INTRO -->
+      <div class="section" id="intro">
+        <div class="policy-box">
+          <p>Always assume games and practices are on unless you hear otherwise from your coach or Region 138.</p>
+          <p>Weather decisions are based on conditions at the fields, not the weather at home.</p>
+          <p>Conditions can vary from field to field, and some fields, games, or practices may be delayed, suspended, or canceled while others continue.</p>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <!-- TABLE OF CONTENTS -->
+      <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+          <li><a href="#rain">Rain</a></li>
+          <li><a href="#lightning-thunder">Lightning and Thunder</a></li>
+          <li><a href="#game-timing">Game Timing</a></li>
+          <li><a href="#field-closures">Field Closures and Full-Day Cancellations</a></li>
+          <li><a href="#practices">Practices</a></li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <!-- RAIN -->
+      <div class="section" id="rain">
+        <h2 class="section-title">Rain</h2>
+
+        <p>Rain by itself does not automatically cancel games or practices.</p>
+        <p>Play may continue in light or moderate rain if the fields remain safe, visibility is adequate, and conditions are not damaging the fields.</p>
+        <p>Activity may be delayed, suspended, or canceled if rain creates unsafe footing, poor visibility, standing water, or field damage.</p>
+
+        <a href="#top" class="back-to-top">↑ Top</a>
+      </div>
+
+      <hr class="divider">
+
+      <!-- LIGHTNING AND THUNDER -->
+      <div class="section" id="lightning-thunder">
+        <h2 class="section-title">Lightning and Thunder</h2>
+
+        <div class="callout callout-red">
+          <p>Lightning and thunder are treated the same.</p>
+          <p>If lightning is seen or thunder is heard, all activity stops immediately. This applies to games, practices, and warmups.</p>
+        </div>
+
+        <p>Players, coaches, referees, and spectators should seek shelter immediately in a fully enclosed building or fully enclosed vehicle with windows up.</p>
+        <p>Dugouts, open shelters, bleachers, and trees are not safe shelter.</p>
+        <p>Coaches should help clear players from the field quickly and direct families to safer shelter.</p>
+        <p>Activity may not resume until Region 138, the referee, or the coach in charge gives the all clear.</p>
+        <p>Play may resume only after 30 minutes have passed since the last thunder heard or lightning seen.</p>
+        <p>Each new thunder or lightning strike resets the 30-minute clock.</p>
+        <p>Even if the danger appears to have passed, the full 30-minute waiting period will be observed.</p>
+        <p>If there is not enough time left to complete the required weather delay and still have at least half of that game or practice block left, that game or practice is canceled and will not be delayed into the next block.</p>
+
+        <a href="#top" class="back-to-top">↑ Top</a>
+      </div>
+
+      <hr class="divider">
+
+      <!-- GAME TIMING -->
+      <div class="section" id="game-timing">
+        <h2 class="section-title">Game Timing</h2>
+
+        <p>Weather decisions may be made before arrival, on site before kickoff, or during play.</p>
+        <p>Weather delays do not automatically push the rest of the day later.</p>
+        <p>Delayed or resumed games must fit within the available field schedule unless Region 138 announces otherwise.</p>
+        <p>Games stopped by weather may be canceled, treated as complete, or rescheduled depending on the division, when play was stopped, and available field time.</p>
+        <p>We will make a reasonable effort to reschedule canceled games when possible, but makeup games are not guaranteed and will depend on field availability and the season schedule.</p>
+
+        <a href="#top" class="back-to-top">↑ Top</a>
+      </div>
+
+      <hr class="divider">
+
+      <!-- FIELD CLOSURES -->
+      <div class="section" id="field-closures">
+        <h2 class="section-title">Field Closures and Full-Day Cancellations</h2>
+
+        <p>If the city closes the fields, Region 138 activities on those fields are canceled.</p>
+
+        <div class="callout callout-blue">
+          <p>If Region 138 cancels a full day of games in advance, or cancels the remaining games for the day due to weather, the Region will send an update by email and post an update on the Region 138 Facebook page.</p>
+        </div>
+
+        <a href="#top" class="back-to-top">↑ Top</a>
+      </div>
+
+      <hr class="divider">
+
+      <!-- PRACTICES -->
+      <div class="section" id="practices">
+        <h2 class="section-title">Practices</h2>
+
+        <p>The coach in charge may delay, suspend, or cancel practice due to unsafe weather or field conditions.</p>
+
+        <a href="#top" class="back-to-top">↑ Top</a>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        Questions or problems with this page? Email <a href="mailto:bcayso138@gmail.com">bcayso138@gmail.com</a>
+      </div>
+
+    </div><!-- end card -->
+  </div><!-- end page-wrap -->
+
+</body>
+</html>
