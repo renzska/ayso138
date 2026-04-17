@@ -129,15 +129,37 @@
 
     /* LISTS */
     ul.bullets {
-      margin: 0 0 12px 20px;
+      margin: 8px 0 0 0;
+      padding-left: 0;
+      list-style: none !important;
       font-family: Arial;
       font-size: 16px;
     }
 
     ul.bullets li {
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.6;
+      color: #444444;
       font-family: Arial;
       font-size: 16px;
+      list-style: none !important;
+    }
+
+    ul.bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      background: #08529f;
+      border-radius: 50%;
+    }
+
+    ul.bullets li:last-child {
+      margin-bottom: 0;
     }
 
     /* TABLES */
@@ -309,7 +331,7 @@
 
     <!-- HEADER -->
     <div class="header" id="top">
-      <h1>Weather and Cancellation Policy</h1>
+      <h1>Weather and Cancellation Policy | AYSO Region 138</h1>
     </div>
 
     <div class="card">
@@ -317,9 +339,10 @@
       <!-- INTRO -->
       <div class="section" id="intro">
         <div class="policy-box">
-          <p>Always assume games and practices are on unless you hear otherwise from your coach or Region 138.</p>
+          <p>This policy applies to games, practices, and warmups.</p>
+          <p>Always assume game on unless you hear otherwise from your coach or Region 138.</p>
           <p>Weather decisions are based on conditions at the fields, not the weather at home.</p>
-          <p>Conditions can vary from field to field, and some fields, games, or practices may be delayed, suspended, or canceled while others continue.</p>
+          <p>Conditions can vary from field to field, and some fields or game blocks may be delayed, suspended, or canceled while others continue.</p>
         </div>
       </div>
 
@@ -343,9 +366,14 @@
       <div class="section" id="rain">
         <h2 class="section-title">Rain</h2>
 
-        <p>Rain by itself does not automatically cancel games or practices.</p>
-        <p>Play may continue in light or moderate rain if the fields remain safe, visibility is adequate, and conditions are not damaging the fields.</p>
-        <p>Activity may be delayed, suspended, or canceled if rain creates unsafe footing, poor visibility, standing water, or field damage.</p>
+        <div class="callout callout-yellow">
+          <p>Rain by itself does not automatically cancel games or practices.</p>
+        </div>
+
+        <ul class="bullets">
+          <li>Play may continue in light or moderate rain if the fields remain safe, visibility is adequate, and conditions are not damaging the fields.</li>
+          <li>Activity may be delayed, suspended, or canceled if rain creates unsafe footing, poor visibility, standing water, or field damage.</li>
+        </ul>
 
         <a href="#top" class="back-to-top">↑ Top</a>
       </div>
@@ -357,18 +385,19 @@
         <h2 class="section-title">Lightning and Thunder</h2>
 
         <div class="callout callout-red">
-          <p>Lightning and thunder are treated the same.</p>
-          <p>If lightning is seen or thunder is heard, all activity stops immediately. This applies to games, practices, and warmups.</p>
+          <p>If lightning is seen or thunder is heard, all activity stops immediately. Lightning and thunder are treated the same.</p>
         </div>
 
-        <p>Players, coaches, referees, and spectators should seek shelter immediately in a fully enclosed building or fully enclosed vehicle with windows up.</p>
-        <p>Dugouts, open shelters, bleachers, and trees are not safe shelter.</p>
-        <p>Coaches should help clear players from the field quickly and direct families to safer shelter.</p>
-        <p>Activity may not resume until Region 138, the referee, or the coach in charge gives the all clear.</p>
-        <p>Play may resume only after 30 minutes have passed since the last thunder heard or lightning seen.</p>
-        <p>Each new thunder or lightning strike resets the 30-minute clock.</p>
-        <p>Even if the danger appears to have passed, the full 30-minute waiting period will be observed.</p>
-        <p>If there is not enough time left to complete the required weather delay and still have at least half of that game or practice block left, that game or practice is canceled and will not be delayed into the next block.</p>
+        <ul class="bullets">
+          <li>Players, coaches, referees, and spectators should seek shelter immediately in a fully enclosed building or fully enclosed vehicle with windows up.</li>
+          <li>Dugouts, open shelters, bleachers, and trees are not safe shelter.</li>
+          <li>Coaches should help clear players from the field quickly and direct families to safer shelter.</li>
+          <li>Activity may not resume until Region 138, the referee, or the coach in charge gives the all clear.</li>
+          <li>Play may resume only after 30 minutes have passed since the last thunder heard or lightning seen.</li>
+          <li>Each new thunder or lightning strike resets the 30-minute clock.</li>
+          <li>Even if the danger appears to have passed, the full 30-minute waiting period will be observed.</li>
+          <li>If there is not enough time left to complete the required weather delay and still have at least half of that game or practice block left, that game or practice is canceled and will not be delayed into the next block.</li>
+        </ul>
 
         <a href="#top" class="back-to-top">↑ Top</a>
       </div>
@@ -379,11 +408,16 @@
       <div class="section" id="game-timing">
         <h2 class="section-title">Game Timing</h2>
 
-        <p>Weather decisions may be made before arrival, on site before kickoff, or during play.</p>
-        <p>Weather delays do not automatically push the rest of the day later.</p>
-        <p>Delayed or resumed games must fit within the available field schedule unless Region 138 announces otherwise.</p>
-        <p>Games stopped by weather may be canceled, treated as complete, or rescheduled depending on the division, when play was stopped, and available field time.</p>
-        <p>We will make a reasonable effort to reschedule canceled games when possible, but makeup games are not guaranteed and will depend on field availability and the season schedule.</p>
+        <div class="callout callout-blue">
+          <p>Weather delays do not automatically push the rest of the day later.</p>
+        </div>
+
+        <ul class="bullets">
+          <li>Weather decisions may be made before arrival, on site before kickoff, or during play.</li>
+          <li>Delayed or resumed games must fit within the available field schedule unless Region 138 announces otherwise.</li>
+          <li>Games stopped by weather may be canceled, treated as complete, or rescheduled depending on the division, when play was stopped, and available field time.</li>
+          <li>We will make a reasonable effort to reschedule canceled games when possible, but makeup games are not guaranteed and will depend on field availability and the season schedule.</li>
+        </ul>
 
         <a href="#top" class="back-to-top">↑ Top</a>
       </div>
@@ -394,11 +428,13 @@
       <div class="section" id="field-closures">
         <h2 class="section-title">Field Closures and Full-Day Cancellations</h2>
 
-        <p>If the city closes the fields, Region 138 activities on those fields are canceled.</p>
-
         <div class="callout callout-blue">
-          <p>If Region 138 cancels a full day of games in advance, or cancels the remaining games for the day due to weather, the Region will send an update by email and post an update on the Region 138 Facebook page.</p>
+          <p>If Region 138 cancels a full day of games or the remaining games for the day, the Region will send an update by email and post an update on the Region 138 Facebook page.</p>
         </div>
+
+        <ul class="bullets">
+          <li>If the city closes the fields, Region 138 activities on those fields are canceled.</li>
+        </ul>
 
         <a href="#top" class="back-to-top">↑ Top</a>
       </div>
@@ -409,7 +445,9 @@
       <div class="section" id="practices">
         <h2 class="section-title">Practices</h2>
 
-        <p>The coach in charge may delay, suspend, or cancel practice due to unsafe weather or field conditions.</p>
+        <div class="callout callout-yellow">
+          <p>The coach in charge may delay, suspend, or cancel practice due to unsafe weather or field conditions.</p>
+        </div>
 
         <a href="#top" class="back-to-top">↑ Top</a>
       </div>

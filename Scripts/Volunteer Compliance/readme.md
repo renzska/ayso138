@@ -12,7 +12,7 @@
 
 # Next Season
 # First run — sends everyone, logs who was sent
-.\Send-TrainingReminders.ps1 -Roles All -ExportReport -CC "ayso138.ca@gmail.com"
+.\Send-TrainingReminders.ps1 -Roles All -ExportReport -CC "ayso138.ca@gmail.com" -SafetOnly
 
 # If it breaks mid-run, re-run with -SkipAlreadySent to pick up where it left off
-.\Send-TrainingReminders.ps1 -Roles All -ExportReport -CC "ayso138.ca@gmail.com" -SkipAlreadySent
+.\Send-TrainingReminders.ps1 -Roles All -ExportReport -CC "ayso138.ca@gmail.com" -SafetyOnly -SkipAlreadySent

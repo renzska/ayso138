@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python3)"
+      "Bash(python3)",
+      "Bash(pwsh -Command 'Import-Module ImportExcel; $rows = Import-Excel '\\\\''Volunteer_Details.xlsx'\\\\'' | Select-Object -First 1; $rows.PSObject.Properties.Name')"
     ]
   }
 }

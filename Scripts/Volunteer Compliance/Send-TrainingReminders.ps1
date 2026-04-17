@@ -82,29 +82,95 @@
 .PARAMETER OutputFolder
     Folder for HTML email previews.  Default: "TrainingReminderOutput"
 
-.EXAMPLE
-    # Review what would go out - no emails sent
-    .\Send-TrainingReminders-v2.ps1 -DryRun -ExportReport
+.PARAMETER OnlyList
+    Path to a plain-text file of email addresses (one per line) to send to exclusively.
+    Useful for retrying a handful of failed sends without reprocessing everyone.
+    Example: -OnlyList "TrainingReminderOutput\FailedEmails.txt"
+
+.PARAMETER SentLogPath
+    Path to a plain-text file where successfully sent addresses are recorded (one per line).
+    Default: "TrainingReminderOutput\SentLog.txt"
+    Used together with -SkipAlreadySent to avoid double-sending on re-runs.
+
+.PARAMETER SkipAlreadySent
+    When set, any email address already present in SentLogPath is skipped.
+    Use this on a full re-run after a partial failure so already-sent volunteers
+    are not emailed again.
+
+.PARAMETER DelayMs
+    Milliseconds to pause between each send attempt. Helps avoid Gmail SMTP rate
+    limiting. Default: 1500 ms (safe for large lists). Lower to 500 for small retries.
+
+.PARAMETER SafetyOnly
+    When set, only the five safety-training items are evaluated and included in emails:
+      SafeHaven, Concussion (CDC), SCA, SafeSport, Risk (Background Check)
+    Coach training, referee training, and lower-division course checks are completely
+    skipped — they will not appear in the status table, email instructions, or
+    compliance determination. Use this for a clean safety-focused pass before or
+    after running a separate coach-training pass.
+
+.PARAMETER SendCompliantEmail
+    When set, any volunteer who has completed all required safety training receives
+    a separate congratulatory "You're All Set" email confirming their safety compliance.
+    This email is sent instead of a reminder — compliant volunteers will not receive
+    both. Pair with -SafetyOnly for the most common use case:
+      - Reminders  → go to volunteers still missing safety items
+      - Congrats   → go to volunteers who have finished all safety items
+    Can also be used without -SafetyOnly; in that case, a volunteer who is
+    safety-complete but still needs coach training will receive the congrats email
+    AND a separate reminder about the outstanding coach training.
 
 .EXAMPLE
-    # Test: all emails land in your own inbox for review
-    .\Send-TrainingReminders-v2.ps1 -Roles "HeadCoach,AssistantCoach" -TestMode
+    # Preview everything — no emails sent, HTML previews saved for review
+    .\Send-TrainingReminders.ps1 -DryRun -ExportReport
 
 .EXAMPLE
-    # Send only to Team Managers (background check only, per preset)
-    .\Send-TrainingReminders-v2.ps1 -Roles "TeamManager"
+    # Test mode: all emails land in your own inbox so you can review before going live
+    .\Send-TrainingReminders.ps1 -Roles "HeadCoach,AssistantCoach" -TestMode
 
 .EXAMPLE
-    # Send to Team Managers + Field Setup, but require ALL training items
-    .\Send-TrainingReminders-v2.ps1 -Roles "TM,FS" -Requirements "All"
+    # Send only to Team Managers (uses role preset: SafeHaven, Concussion, SCA)
+    .\Send-TrainingReminders.ps1 -Roles "TeamManager"
+
+.EXAMPLE
+    # Send to Team Managers + Field Setup, but require ALL five training items
+    .\Send-TrainingReminders.ps1 -Roles "TM,FS" -Requirements "All"
 
 .EXAMPLE
     # 12U coaches only, test mode
-    .\Send-TrainingReminders-v2.ps1 -Roles "HC,AC" -Division "12U" -TestMode
+    .\Send-TrainingReminders.ps1 -Roles "HC,AC" -Division "12U" -TestMode
 
 .EXAMPLE
     # Live send to everyone, CC yourself
-    .\Send-TrainingReminders-v2.ps1 -Roles All -CC "john@rennemeyer.com"
+    .\Send-TrainingReminders.ps1 -Roles All -CC "john@rennemeyer.com"
+
+.EXAMPLE
+    # Preview safety-only reminders — coach and referee training completely excluded
+    .\Send-TrainingReminders.ps1 -Roles All -SafetyOnly -DryRun
+
+.EXAMPLE
+    # Test safety-only reminders in your inbox before going live
+    .\Send-TrainingReminders.ps1 -Roles All -SafetyOnly -TestMode
+
+.EXAMPLE
+    # Live safety-only reminders to everyone still missing safety training
+    .\Send-TrainingReminders.ps1 -Roles All -SafetyOnly -CC "john@rennemeyer.com"
+
+.EXAMPLE
+    # Preview both safety reminders AND congrats emails — nothing sent yet
+    .\Send-TrainingReminders.ps1 -Roles All -SafetyOnly -SendCompliantEmail -DryRun
+
+.EXAMPLE
+    # Test both in your inbox: reminders to those missing safety, congrats to those done
+    .\Send-TrainingReminders.ps1 -Roles All -SafetyOnly -SendCompliantEmail -TestMode
+
+.EXAMPLE
+    # Live full safety pass: reminders to the incomplete, congrats to the complete
+    .\Send-TrainingReminders.ps1 -Roles All -SafetyOnly -SendCompliantEmail -CC "john@rennemeyer.com"
+
+.EXAMPLE
+    # Preview congrats-only emails (safety complete check, no reminders sent)
+    .\Send-TrainingReminders.ps1 -Roles All -SendCompliantEmail -DryRun
 #>
 
 param (
@@ -137,7 +203,16 @@ param (
 
     # Milliseconds to pause between each send attempt. Helps avoid Gmail SMTP
     # rate limiting. 1500 ms is safe for large lists; lower to 500 for small retries.
-    [int]$DelayMs             = 1500
+    [int]$DelayMs             = 1500,
+
+    # When set, only safety-training items are evaluated (SafeHaven, Concussion, SCA,
+    # SafeSport, Risk). Coach training, referee training, and lower-division checks are
+    # completely skipped — they will not appear in emails or compliance checks.
+    [switch]$SafetyOnly         = $false,
+
+    # When set, volunteers who have completed all required safety training receive a
+    # congratulatory email. Pair with -SafetyOnly for a clean safety-only pass.
+    [switch]$SendCompliantEmail = $false
 )
 
 Set-StrictMode -Off
@@ -411,6 +486,8 @@ if ($overrideRequirements -ne $null) {
 } else {
     Write-Host "  Requirements : Role presets"
 }
+if ($SafetyOnly)         { Write-Host "  Safety Only  : Yes (coach/ref training skipped)" -ForegroundColor Cyan }
+if ($SendCompliantEmail) { Write-Host "  Compliant Emails: Yes (sending to safety-complete volunteers)" -ForegroundColor Cyan }
 if ($Division) { Write-Host "  Division     : *$Division*" }
 if ($CC)       { Write-Host "  CC           : $CC" }
 Write-Host ""
@@ -432,10 +509,22 @@ $volRows  = Import-Excel -Path $VolunteerPath
 # ============================================================================
 
 $credLookup = @{}
+$credNameLookup = @{}  # fallback: "firstname lastname".lower → credential row
 foreach ($c in $credRows) {
     $em = "$($c.'Email')".Trim().ToLower()
     if ($em -and $em -match "@") {
         $credLookup[$em] = $c
+    }
+    
+    # Also build name-based lookup for fallback
+    $cfn = "$($c.'First Name')".Trim()
+    $cln = "$($c.'Last Name')".Trim()
+    if ($cfn -and $cln) {
+        $nameKey = "$cfn $cln".ToLower()
+        # Only store if we don't already have this name (avoid duplicates)
+        if (-not $credNameLookup.ContainsKey($nameKey)) {
+            $credNameLookup[$nameKey] = $c
+        }
     }
 }
 
@@ -443,7 +532,7 @@ foreach ($c in $credRows) {
 # BUILD VOLUNTEER LOOKUP  (email.lower → list of role records)
 # ============================================================================
 
-$volLookup = @{}   # email → @( @{Role; Division; Team; FirstName; LastName} )
+$volLookup = @{}   # email → @( @{Role; Division; Team; FirstName; LastName; Phone} )
 
 foreach ($v in $volRows) {
     $em   = "$($v.'Volunteer Email Address')".Trim().ToLower()
@@ -453,13 +542,22 @@ foreach ($v in $volRows) {
     $fn   = "$($v.'Volunteer First Name')".Trim()
     $ln   = "$($v.'Volunteer Last Name')".Trim()
 
+    # Prefer cell, fall back to telephone, then other phone
+    $cell  = "$($v.'Volunteer Cellphone')".Trim()
+    $tel   = "$($v.'Volunteer Telephone')".Trim()
+    $other = "$($v.'Volunteer Other Phone')".Trim()
+    $phone = if ($cell)  { $cell }
+             elseif ($tel)   { $tel }
+             elseif ($other) { $other }
+             else            { '' }
+
     if (-not $em -or $em -notmatch "@") { continue }
     if (-not $volLookup.ContainsKey($em)) { $volLookup[$em] = @() }
 
     # Deduplicate: skip if exact same role+team already recorded
     $existing = $volLookup[$em] | Where-Object { $_.Role -eq $role -and $_.Team -eq $team }
     if (-not $existing) {
-        $volLookup[$em] += @{ Role=$role; Division=$div; Team=$team; FirstName=$fn; LastName=$ln }
+        $volLookup[$em] += @{ Role=$role; Division=$div; Team=$team; FirstName=$fn; LastName=$ln; Phone=$phone }
     }
 }
 
@@ -477,12 +575,15 @@ function Get-Badge ([bool]$Done, [bool]$NotRequired = $false) {
 # REPORT ACCUMULATOR
 # ============================================================================
 
-$reportRows   = @()
-$sentCount    = 0
-$skippedCount = 0
-$warnCount    = 0
-$errorCount   = 0
-$today        = Get-Date
+$reportRows         = @()
+$compliantList      = @()   # accumulates fully-compliant volunteers for summary
+$nonCompliantList   = @()   # accumulates volunteers who received a reminder email
+$warningList        = @()   # accumulates volunteers with no credentials record
+$sentCount          = 0
+$skippedCount       = 0
+$warnCount          = 0
+$errorCount         = 0
+$today              = Get-Date
 
 # ============================================================================
 # MAIN LOOP - iterate unique volunteer emails
@@ -533,32 +634,64 @@ foreach ($em in $volLookup.Keys) {
     $displayEmail = $em   # preserve original case from cred lookup if possible
 
     # --- Look up credentials ---
-    if (-not $credLookup.ContainsKey($em)) {
-        Write-Host "⚠️  No credentials record: $firstName $lastName ($em)" -ForegroundColor Yellow
-        $warnCount++
+    $cred = $null
+    $noCredRecord = $false
+    $matchedByName = $false
+    
+    # First try email lookup
+    if ($credLookup.ContainsKey($em)) {
+        $cred = $credLookup[$em]
+        # Preserve original email from cred file for sending
+        $displayEmail = "$($cred.'Email')".Trim()
+    } else {
+        # Email not found - try matching by name
+        $nameKey = "$firstName $lastName".ToLower()
+        if ($credNameLookup.ContainsKey($nameKey)) {
+            $cred = $credNameLookup[$nameKey]
+            $matchedByName = $true
+            $credEmail = "$($cred.'Email')".Trim()
+            Write-Host "ℹ️  Matched by name: $firstName $lastName - Volunteer email: $em, Cred email: $credEmail" -ForegroundColor Cyan
+            # Use the email from the credentials file for sending
+            $displayEmail = $credEmail
+            
+            # Track this as a warning for email mismatch
+            $warnCount++
+            $warningList += [PSCustomObject]@{
+                FirstName = $firstName
+                LastName  = $lastName
+                Email     = "Vol: $em / Cred: $credEmail"
+                Roles     = (($matchingRecords | Select-Object -ExpandProperty Role | Sort-Object -Unique) -join ', ')
+                Issue     = 'Email mismatch - matched by name'
+            }
+        } else {
+            # No match by email or name
+            Write-Host "⚠️  No credentials record: $firstName $lastName ($em) - treating as non-compliant" -ForegroundColor Yellow
+            $warnCount++
+            $noCredRecord = $true
+            
+            # Track for summary
+            $warningList += [PSCustomObject]@{
+                FirstName = $firstName
+                LastName  = $lastName
+                Email     = $em
+                Roles     = (($matchingRecords | Select-Object -ExpandProperty Role | Sort-Object -Unique) -join ', ')
+                Issue     = 'Not in credentials file'
+            }
 
-        # Still add to report
-        $reportRows += [PSCustomObject]@{
-            FirstName   = $firstName
-            LastName    = $lastName
-            Email       = $em
-            Roles       = (($matchingRecords | Select-Object -ExpandProperty Role | Sort-Object -Unique) -join '; ')
-            Divisions   = (($matchingRecords | Select-Object -ExpandProperty Division | Sort-Object -Unique) -join '; ')
-            Teams       = (($matchingRecords | Select-Object -ExpandProperty Team | Sort-Object -Unique) -join '; ')
-            SafeHaven   = 'NO RECORD'
-            Concussion  = 'NO RECORD'
-            SCA         = 'NO RECORD'
-            SafeSport   = 'NO RECORD'
-            RiskStatus  = 'NO RECORD'
-            Missing     = 'Cannot check - not in credentials file'
-            EmailSent   = 'No'
+            # Create a fake credential record with all fields indicating incomplete
+            $cred = [PSCustomObject]@{
+                'Email'                              = $em
+                'DOB'                                = $null
+                'Risk Status'                        = 'None'
+                'AYSOs Safe Haven Verified'          = 'N'
+                'Concussion Awareness Verified'      = 'N'
+                'SafeSport Verified'                 = 'N'
+                'Sudden Cardiac Arrest Verified'     = 'N'
+                'Referee Grade'                      = ''
+            }
+            $displayEmail = $em
         }
-        continue
     }
-
-    $cred = $credLookup[$em]
-    # Preserve original email from cred file for sending
-    $displayEmail = "$($cred.'Email')".Trim()
 
     # --- Age / adult determination ---
     $isAdult = $true
@@ -644,10 +777,13 @@ foreach ($em in $volLookup.Keys) {
     $allCoachRecs        = @()    # always initialize so filename prefix can reference it
 
     $isCoachRole = @($matchingRecords | Where-Object { $_.Role -in @('Head Coach', 'Assistant Coach') }).Count -gt 0
+    # Always populate allCoachRecs — needed for filename generation even in SafetyOnly mode
     if ($isCoachRole) {
+        $allCoachRecs = @($allRecords | Where-Object { $_.Role -in @('Head Coach', 'Assistant Coach') })
+    }
+    if ($isCoachRole -and -not $SafetyOnly) {
         # Use ALL records for this person (including unallocated) to find their
         # highest coaching division - that determines the training level required
-        $allCoachRecs = @($allRecords | Where-Object { $_.Role -in @('Head Coach', 'Assistant Coach') })
         foreach ($rec in $allCoachRecs) {
             $age = Get-DivisionAge $rec.Division
             if ($age -gt $coachHighestAge) { $coachHighestAge = $age }
@@ -690,7 +826,7 @@ foreach ($em in $volLookup.Keys) {
     $needsRefTraining = $false
     $needs8UOfficial  = $false
     $isYouthRefRole   = @($matchingRecords | Where-Object { $_.Role -eq 'Youth Referee' }).Count -gt 0
-    if ($isBlueStatus -or $isYouthRefRole) {
+    if ((-not $SafetyOnly) -and ($isBlueStatus -or $isYouthRefRole)) {
         $needs8UOfficial  = ($refGrade -eq '' -or $refGrade -ieq 'None')
         $needsRefTraining = $needs8UOfficial
     }
@@ -702,7 +838,7 @@ foreach ($em in $volLookup.Keys) {
     $needsCoach6U        = $false
     $needsCoach8U        = $false
     $needsLowerDivVerify = $false
-    if ($isCoachRole -and $allCoachRecs.Count -gt 0) {
+    if ((-not $SafetyOnly) -and $isCoachRole -and $allCoachRecs.Count -gt 0) {
         $coaches6U = @($allCoachRecs | Where-Object { (Get-DivisionAge $_.Division) -eq 6 }).Count -gt 0
         $coaches8U = @($allCoachRecs | Where-Object { (Get-DivisionAge $_.Division) -eq 8 }).Count -gt 0
         if ($coaches6U -and $coachCurrentRank -lt 2) { $needsCoach6U        = $true }
@@ -710,7 +846,8 @@ foreach ($em in $volLookup.Keys) {
         $needsLowerDivVerify = $needsCoach6U -or $needsCoach8U
     }
 
-    $anyIncomplete = $needsSafeHaven -or $needsConcussion -or $needsSCA -or $needsSafeSport -or $needsRisk -or $needsCoachTraining -or $needsRefTraining -or $needsLowerDivVerify
+    $safetyComplete = -not ($needsSafeHaven -or $needsConcussion -or $needsSCA -or $needsSafeSport -or $needsRisk)
+    $anyIncomplete  = $needsSafeHaven -or $needsConcussion -or $needsSCA -or $needsSafeSport -or $needsRisk -or $needsCoachTraining -or $needsRefTraining -or $needsLowerDivVerify
 
     # --- Build missing items list for report ---
     $missingList = @()
@@ -760,10 +897,258 @@ foreach ($em in $volLookup.Keys) {
     }
 
     if (-not $anyIncomplete) {
+        $phone = ($matchingRecords | Select-Object -First 1).Phone
+        $divs  = ($matchingRecords | Where-Object { $_.Division -and $_.Division -ne 'Unallocated' } | Select-Object -ExpandProperty Division | Sort-Object -Unique) -join '; '
+        $teams = ($matchingRecords | Where-Object { $_.Team     -and $_.Team     -ne 'Unallocated' } | Select-Object -ExpandProperty Team     | Sort-Object -Unique) -join '; '
+        $compliantList += [PSCustomObject]@{
+            FirstName = $firstName; LastName = $lastName
+            Roles = $rolesSummary; Divisions = $divs; Teams = $teams
+            Email = $displayEmail; Phone = $phone
+        }
         Write-Host "✅ $firstName $lastName ($rolesSummary) - compliant" -ForegroundColor Green
         $reportRows[-1].EmailSent = 'No - Compliant'
-        $skippedCount++
+
+        if ($SendCompliantEmail -and $safetyComplete) {
+            # ── Build safety-completion congratulatory email ─────────────────
+            $safetyStatusRows = ""
+            if ($checkRisk)       { $safetyStatusRows += "<tr><td>Background Check (Risk Status)</td><td>$(Get-Badge $true)</td></tr>`n" }
+            if ($checkSafeHaven)  { $safetyStatusRows += "<tr><td>AYSO's Safe Haven</td><td>$(Get-Badge $true)</td></tr>`n" }
+            if ($checkConcussion) { $safetyStatusRows += "<tr><td>CDC Concussion Awareness</td><td>$(Get-Badge $true)</td></tr>`n" }
+            if ($checkSCA)        { $safetyStatusRows += "<tr><td>Sudden Cardiac Arrest</td><td>$(Get-Badge $true)</td></tr>`n" }
+            if ($checkSafeSport)  { $safetyStatusRows += "<tr><td>SafeSport</td><td>$(Get-Badge $true)</td></tr>`n" }
+
+            $compliantHtml = @"
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { margin:0; padding:0; font-family:Arial,sans-serif; font-size:14px; color:#333; background:#f0f0f0; }
+    .wrapper { max-width:640px; margin:20px auto; background:#fff; border-radius:8px;
+               overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
+    .header  { background:#1a7a1a; padding:22px 28px; color:#fff; }
+    .header h1 { margin:0; font-size:20px; font-weight:bold; }
+    .header p  { margin:4px 0 0 0; font-size:13px; opacity:0.85; }
+    .body    { padding:24px 28px; }
+    .role-box { background:#f0f4ff; border:1px solid #c8d4f0; border-radius:6px;
+                padding:10px 16px; margin:0 0 20px 0; font-size:13px; }
+    .role-box ul { margin:4px 0 0 0; padding-left:18px; }
+    .role-box li { margin-bottom:2px; }
+    .status-table { width:100%; border-collapse:collapse; margin:16px 0 24px 0; }
+    .status-table th { background:#1a7a1a; color:#fff; text-align:left;
+                       padding:8px 12px; font-size:13px; }
+    .status-table td { padding:8px 12px; border-bottom:1px solid #e0e0e0; font-size:13px; }
+    .status-table tr:last-child td { border-bottom:none; }
+    .status-table tr:nth-child(even) td { background:#f8f8f8; }
+    a { color:#003366; }
+    .footer { padding:14px 28px; background:#f0f0f0; font-size:12px;
+              color:#666; border-top:1px solid #ddd; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <h1>AYSO Region 138 - Safety Training Complete!</h1>
+  </div>
+  <div class="body">
+    <p>Hi $firstName,</p>
+    <p>Great news &#127881; &mdash; you have completed all required safety training for AYSO Region 138.
+       Thank you for taking the time to get this done. Here is your current safety training status:</p>
+
+    <table class="status-table">
+      <thead>
+        <tr><th>Safety Requirement</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+$safetyStatusRows      </tbody>
+    </table>
+
+    <p>You&rsquo;re all set on safety training. If you have any questions or believe something looks
+       incorrect, just reply to this email and we&rsquo;ll sort it out.</p>
+
+    <p>Thanks again for everything you do for the kids in our community!</p>
+
+    <p>
+      <strong>John Rennemeyer</strong><br>
+      Coach Administrator<br>
+      <a href="https://www.ayso138.org">AYSO Region 138</a>
+    </p>
+  </div>
+  <div class="footer">
+    Sent to $displayEmail on behalf of AYSO Region 138, Brigham City, Utah.<br>
+    If you received this in error, please reply and let us know.
+  </div>
+</div>
+</body>
+</html>
+"@
+            $safeName2  = "$($lastName)_$($firstName)_SafetyComplete" -replace '[^a-zA-Z0-9_]', '_'
+            $htmlPath2  = Join-Path $OutputFolder "$safeName2.html"
+            $compliantHtml | Out-File -FilePath $htmlPath2 -Encoding utf8
+
+            $toAddress2 = if ($TestMode) { $GmailFrom } else { $displayEmail }
+            Write-Host "✉️  COMPLIANT | $firstName $lastName [$rolesSummary]$(if ($TestMode) { " → $GmailFrom" })" -ForegroundColor Green
+            Write-Host "             Preview: $htmlPath2"
+
+            if (-not $DryRun) {
+                $mailParams2 = @{
+                    From       = "AYSO 138 Coach Admin <$GmailFrom>"
+                    To         = $toAddress2
+                    Subject    = "You're All Set: AYSO Region 138 Safety Training Complete"
+                    Body       = $compliantHtml
+                    BodyAsHtml = $true
+                    SmtpServer = "smtp.gmail.com"
+                    Port       = 587
+                    UseSsl     = $true
+                    Credential = New-Object System.Management.Automation.PSCredential(
+                                    $GmailFrom,
+                                    (ConvertTo-SecureString $GmailPassword -AsPlainText -Force))
+                }
+                if ($CC) { $mailParams2.Cc = $CC }
+                try {
+                    Send-MailMessage @mailParams2
+                    $sentCount++
+                    $reportRows[-1].EmailSent = if ($TestMode) { "Compliant Email Sent (Test)" } else { "Compliant Email Sent" }
+                    $logDir = Split-Path $SentLogPath -Parent
+                    if ($logDir -and -not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir | Out-Null }
+                    Add-Content -Path $SentLogPath -Value $displayEmail.ToLower()
+                } catch {
+                    $errorCount++
+                    $reportRows[-1].EmailSent = "Compliant Email FAILED"
+                    Write-Host "  ❌ FAILED: $($_.Exception.Message)" -ForegroundColor Red
+                }
+                if ($DelayMs -gt 0) { Start-Sleep -Milliseconds $DelayMs }
+            } else {
+                $sentCount++
+                $reportRows[-1].EmailSent = "Dry Run (Compliant)"
+            }
+        } else {
+            $skippedCount++
+        }
         continue
+    }
+
+    # ── Safety-complete but still has non-safety items outstanding ────────────────
+    # Send compliant email if requested, then fall through to reminder email only
+    # if there are non-safety items still outstanding (e.g. coach training).
+    if ($SendCompliantEmail -and $safetyComplete) {
+        $phone = ($matchingRecords | Select-Object -First 1).Phone
+        $divs  = ($matchingRecords | Where-Object { $_.Division -and $_.Division -ne 'Unallocated' } | Select-Object -ExpandProperty Division | Sort-Object -Unique) -join '; '
+        $teams = ($matchingRecords | Where-Object { $_.Team     -and $_.Team     -ne 'Unallocated' } | Select-Object -ExpandProperty Team     | Sort-Object -Unique) -join '; '
+        $compliantList += [PSCustomObject]@{
+            FirstName = $firstName; LastName = $lastName
+            Roles = $rolesSummary; Divisions = $divs; Teams = $teams
+            Email = $displayEmail; Phone = $phone
+        }
+        $safetyStatusRows = ""
+        if ($checkRisk)       { $safetyStatusRows += "<tr><td>Background Check (Risk Status)</td><td>$(Get-Badge $true)</td></tr>`n" }
+        if ($checkSafeHaven)  { $safetyStatusRows += "<tr><td>AYSO's Safe Haven</td><td>$(Get-Badge $true)</td></tr>`n" }
+        if ($checkConcussion) { $safetyStatusRows += "<tr><td>CDC Concussion Awareness</td><td>$(Get-Badge $true)</td></tr>`n" }
+        if ($checkSCA)        { $safetyStatusRows += "<tr><td>Sudden Cardiac Arrest</td><td>$(Get-Badge $true)</td></tr>`n" }
+        if ($checkSafeSport)  { $safetyStatusRows += "<tr><td>SafeSport</td><td>$(Get-Badge $true)</td></tr>`n" }
+
+        $compliantHtml = @"
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { margin:0; padding:0; font-family:Arial,sans-serif; font-size:14px; color:#333; background:#f0f0f0; }
+    .wrapper { max-width:640px; margin:20px auto; background:#fff; border-radius:8px;
+               overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
+    .header  { background:#1a7a1a; padding:22px 28px; color:#fff; }
+    .header h1 { margin:0; font-size:20px; font-weight:bold; }
+    .header p  { margin:4px 0 0 0; font-size:13px; opacity:0.85; }
+    .body    { padding:24px 28px; }
+    .status-table { width:100%; border-collapse:collapse; margin:16px 0 24px 0; }
+    .status-table th { background:#1a7a1a; color:#fff; text-align:left;
+                       padding:8px 12px; font-size:13px; }
+    .status-table td { padding:8px 12px; border-bottom:1px solid #e0e0e0; font-size:13px; }
+    .status-table tr:last-child td { border-bottom:none; }
+    .status-table tr:nth-child(even) td { background:#f8f8f8; }
+    a { color:#003366; }
+    .footer { padding:14px 28px; background:#f0f0f0; font-size:12px;
+              color:#666; border-top:1px solid #ddd; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="header">
+    <h1>AYSO Region 138 - Safety Training Complete!</h1>
+  </div>
+  <div class="body">
+    <p>Hi $firstName,</p>
+    <p>Great news &#127881; &mdash; you have completed all required safety training for AYSO Region 138.
+       Thank you for taking the time to get this done. Here is your current safety training status:</p>
+
+    <table class="status-table">
+      <thead>
+        <tr><th>Safety Requirement</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+$safetyStatusRows      </tbody>
+    </table>
+
+    <p>You&rsquo;re all set on safety training. If you have any questions or believe something looks
+       incorrect, just reply to this email and we&rsquo;ll sort it out.</p>
+
+    <p>Thanks again for everything you do for the kids in our community!</p>
+
+    <p>
+      <strong>John Rennemeyer</strong><br>
+      Coach Administrator<br>
+      <a href="https://www.ayso138.org">AYSO Region 138</a>
+    </p>
+  </div>
+  <div class="footer">
+    Sent to $displayEmail on behalf of AYSO Region 138, Brigham City, Utah.<br>
+    If you received this in error, please reply and let us know.
+  </div>
+</div>
+</body>
+</html>
+"@
+        $safeName2 = "$($lastName)_$($firstName)_SafetyComplete" -replace '[^a-zA-Z0-9_]', '_'
+        $htmlPath2 = Join-Path $OutputFolder "$safeName2.html"
+        $compliantHtml | Out-File -FilePath $htmlPath2 -Encoding utf8
+
+        $toAddress2 = if ($TestMode) { $GmailFrom } else { $displayEmail }
+        Write-Host "✉️  COMPLIANT | $firstName $lastName [$rolesSummary]$(if ($TestMode) { " → $GmailFrom" })" -ForegroundColor Green
+        Write-Host "             Preview: $htmlPath2"
+
+        if (-not $DryRun) {
+            $mailParams2 = @{
+                From       = "AYSO 138 Coach Admin <$GmailFrom>"
+                To         = $toAddress2
+                Subject    = "You're All Set: AYSO Region 138 Safety Training Complete"
+                Body       = $compliantHtml
+                BodyAsHtml = $true
+                SmtpServer = "smtp.gmail.com"
+                Port       = 587
+                UseSsl     = $true
+                Credential = New-Object System.Management.Automation.PSCredential(
+                                $GmailFrom,
+                                (ConvertTo-SecureString $GmailPassword -AsPlainText -Force))
+            }
+            if ($CC) { $mailParams2.Cc = $CC }
+            try {
+                Send-MailMessage @mailParams2
+                $sentCount++
+                $reportRows[-1].EmailSent = if ($TestMode) { "Compliant Email Sent (Test)" } else { "Compliant Email Sent" }
+                $logDir = Split-Path $SentLogPath -Parent
+                if ($logDir -and -not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir | Out-Null }
+                Add-Content -Path $SentLogPath -Value $displayEmail.ToLower()
+            } catch {
+                $errorCount++
+                $reportRows[-1].EmailSent = "Compliant Email FAILED"
+                Write-Host "  ❌ FAILED: $($_.Exception.Message)" -ForegroundColor Red
+            }
+            if ($DelayMs -gt 0) { Start-Sleep -Milliseconds $DelayMs }
+        } else {
+            $sentCount++
+            $reportRows[-1].EmailSent = "Dry Run (Compliant)"
+        }
+        # Do NOT continue — fall through to the reminder email for remaining non-safety items
     }
 
     # ========================================================================
@@ -793,8 +1178,8 @@ foreach ($em in $volLookup.Keys) {
         $statusRows += "<tr><td>Background Check</td><td><span style='color:#888;'>N/A - not required under 18</span></td></tr>`n"
     }
 
-    # Coach training row - Head Coach / Assistant Coach only
-    if ($isCoachRole) {
+    # Coach training row - Head Coach / Assistant Coach only (suppressed in SafetyOnly mode)
+    if ($isCoachRole -and -not $SafetyOnly) {
         $ctCell = if ($null -eq $coachTrainingStatus) {
             "<span style='color:#888888;'>N/A - division unrecognized</span>"
         } elseif ($coachTrainingStatus -eq $true) {
@@ -806,8 +1191,8 @@ foreach ($em in $volLookup.Keys) {
         $statusRows += "<tr><td>Coach Training</td><td>$ctCell</td></tr>`n"
     }
 
-    # Referee training rows - Youth Referees only
-    if ($isBlueStatus -or $isYouthRefRole) {
+    # Referee training rows - Youth Referees only (suppressed in SafetyOnly mode)
+    if ((-not $SafetyOnly) -and ($isBlueStatus -or $isYouthRefRole)) {
         $refCell = if ($needs8UOfficial) {
             "<span style='color:#cc0000;font-weight:bold;'>&#10007; Needed</span>"
         } else {
@@ -1131,7 +1516,21 @@ $jhCourses      </ol>
   <div class="body">
     <p>Hi $firstName,</p>
     <p>Thank you again for volunteering with AYSO Region 138! As a reminder, all volunteers need to complete
-       the online portion of their required training before opening day, Saturday, April 11th.</p>
+       the online portion of their required training as soon as possible.</p>
+"@ + $(if ($noCredRecord) { @"
+       <div class="section">
+         <p><strong>Note:</strong> We could not find a credentials record for your account in our system. 
+         This means your status below may not be accurate. Please complete all required training listed below, 
+         and if you believe you have already completed some of these items, please reply to this email so we 
+         can investigate and update your record.</p>
+       </div>
+"@ } elseif ($matchedByName) { @"
+       <div class="section">
+         <p><strong>Note:</strong> Your email address in our volunteer roster ($em) does not match 
+         the email in our credentials system ($displayEmail). We matched you by name and are using your 
+         credentials from $displayEmail. If this email address is incorrect, please reply to let us know.</p>
+       </div>
+"@ } else { "" }) + @"
        <p>Here is your current status:</p>
 
     <table class="status-table">
@@ -1171,15 +1570,20 @@ $instructions
 
     # --- Build division/role suffix for filename ---
     $labelSortOrder = @{ 'PG'=0; 'SY'=1; 'KS'=2; '6U'=3; '8U'=4; '10U'=5; '12U'=6; 'JHHS'=7;
-                         'YR'=8; 'Ref'=9; 'TM'=10; 'FS'=11; 'BM'=12 }
+                         'HC'=8; 'AC'=9; 'YR'=10; 'Ref'=11; 'TM'=12; 'FS'=13; 'BM'=14 }
     $fileLabels = [System.Collections.Generic.List[string]]::new()
 
-    # Coach divisions (use all coach records, not just matching, to capture full picture)
+    # Coach divisions + role abbreviations
     if ($isCoachRole -and $allCoachRecs.Count -gt 0) {
         foreach ($rec in $allCoachRecs) {
             $lbl = Get-DivisionLabel $rec.Division
             if ($lbl -and $lbl -notin $fileLabels) { $fileLabels.Add($lbl) }
         }
+        # Add HC / AC role abbreviations after the division labels
+        $hasHC = @($matchingRecords | Where-Object { $_.Role -eq 'Head Coach' }).Count -gt 0
+        $hasAC = @($matchingRecords | Where-Object { $_.Role -eq 'Assistant Coach' }).Count -gt 0
+        if ($hasHC -and 'HC' -notin $fileLabels) { $fileLabels.Add('HC') }
+        if ($hasAC -and 'AC' -notin $fileLabels) { $fileLabels.Add('AC') }
     }
     # Non-coach roles - add role abbreviation.
     # Blue risk status overrides the "Referee" role label → always "YR" for youth volunteers.
@@ -1204,6 +1608,17 @@ $instructions
 
     # --- Determine To / CC ---
     $toAddress = if ($TestMode) { $GmailFrom } else { $displayEmail }
+
+    # Track for summary and CSV export
+    $ncPhone = ($matchingRecords | Select-Object -First 1).Phone
+    $ncDivs  = ($matchingRecords | Where-Object { $_.Division -and $_.Division -ne 'Unallocated' } | Select-Object -ExpandProperty Division | Sort-Object -Unique) -join '; '
+    $ncTeams = ($matchingRecords | Where-Object { $_.Team     -and $_.Team     -ne 'Unallocated' } | Select-Object -ExpandProperty Team     | Sort-Object -Unique) -join '; '
+    $nonCompliantList += [PSCustomObject]@{
+        FirstName = $firstName; LastName = $lastName
+        Roles = $rolesSummary; Divisions = $ncDivs; Teams = $ncTeams
+        Email = $displayEmail; Phone = $ncPhone
+        MissingTraining = ($missingList -join ', ')
+    }
 
     # --- Console output ---
     $modeTag = if ($TestMode) { " → $GmailFrom" } else { "" }
@@ -1266,22 +1681,75 @@ if ($ExportReport) {
     Write-Host "`n📊 Report saved: $reportPath" -ForegroundColor Magenta
 }
 
+# Always write the compliant / non-compliant CSVs
+$compliantCsvPath    = Join-Path $OutputFolder "Compliant.csv"
+$nonCompliantCsvPath = Join-Path $OutputFolder "NonCompliant.csv"
+
+if ($compliantList.Count -gt 0) {
+    $compliantList |
+        Select-Object FirstName, LastName, Roles, Divisions, Teams, Email, Phone |
+        Sort-Object LastName, FirstName |
+        Export-Csv -Path $compliantCsvPath -NoTypeInformation -Encoding utf8
+} else {
+    # Write an empty file with headers so callers always have a file to reference
+    [PSCustomObject]@{ FirstName=''; LastName=''; Roles=''; Divisions=''; Teams=''; Email=''; Phone='' } |
+        Export-Csv -Path $compliantCsvPath -NoTypeInformation -Encoding utf8
+    # Remove the single blank data row, keep headers only
+    (Get-Content $compliantCsvPath | Select-Object -First 1) | Set-Content $compliantCsvPath
+}
+Write-Host "📋 Compliant CSV    : $compliantCsvPath" -ForegroundColor Green
+
+if ($nonCompliantList.Count -gt 0) {
+    $nonCompliantList |
+        Select-Object FirstName, LastName, Roles, Divisions, Teams, Email, Phone, MissingTraining |
+        Sort-Object LastName, FirstName |
+        Export-Csv -Path $nonCompliantCsvPath -NoTypeInformation -Encoding utf8
+} else {
+    [PSCustomObject]@{ FirstName=''; LastName=''; Roles=''; Divisions=''; Teams=''; Email=''; Phone=''; MissingTraining='' } |
+        Export-Csv -Path $nonCompliantCsvPath -NoTypeInformation -Encoding utf8
+    (Get-Content $nonCompliantCsvPath | Select-Object -First 1) | Set-Content $nonCompliantCsvPath
+}
+Write-Host "📋 Non-Compliant CSV: $nonCompliantCsvPath" -ForegroundColor Yellow
+
 # ============================================================================
 # FINAL SUMMARY
 # ============================================================================
+
+Write-Host ""
+Write-Host "  Fully compliant : $($compliantList.Count)"      -ForegroundColor Green
+if ($compliantList.Count -gt 0) {
+    foreach ($cv in ($compliantList | Sort-Object LastName, FirstName)) {
+        Write-Host "    ✅ $($cv.FirstName) $($cv.LastName)  [$($cv.Roles)]" -ForegroundColor Green
+    }
+}
+Write-Host "  Non-compliant   : $($nonCompliantList.Count)" -ForegroundColor $(if ($nonCompliantList.Count -gt 0) {"Yellow"} else {"Gray"})
+if ($nonCompliantList.Count -gt 0) {
+    foreach ($nc in ($nonCompliantList | Sort-Object LastName, FirstName)) {
+        Write-Host "    ❌ $($nc.FirstName) $($nc.LastName)  [$($nc.Roles)]  — Missing: $($nc.MissingTraining)" -ForegroundColor Yellow
+    }
+}
+Write-Host "  Warnings (no cred record): $warnCount" -ForegroundColor Yellow
+if ($warningList.Count -gt 0) {
+    foreach ($wv in ($warningList | Sort-Object LastName, FirstName)) {
+        Write-Host "    ⚠️  $($wv.FirstName) $($wv.LastName)  [$($wv.Roles)]  — Issue: $($wv.Issue)" -ForegroundColor Yellow
+    }
+}
+if ($errorCount -gt 0) { Write-Host "  Send errors     : $errorCount"           -ForegroundColor Red    }
+Write-Host "  HTML previews   : $OutputFolder\"       -ForegroundColor Gray
+Write-Host "  Compliant CSV   : $compliantCsvPath"    -ForegroundColor Green
+Write-Host "  Non-Compliant CSV: $nonCompliantCsvPath" -ForegroundColor Yellow
+if ($ExportReport) {
+    Write-Host "  Full CSV report : $(Join-Path $OutputFolder 'ComplianceReport.csv')" -ForegroundColor Magenta
+}
 
 Write-Host ""
 Write-Host "══════════════════════════════════════════════════" -ForegroundColor DarkCyan
 Write-Host "  Run Complete"                                      -ForegroundColor White
 Write-Host "══════════════════════════════════════════════════" -ForegroundColor DarkCyan
 Write-Host "  Mode            : $modeLabel"
+if ($SafetyOnly)         { Write-Host "  Safety Only     : Yes" -ForegroundColor Cyan }
+if ($SendCompliantEmail) { Write-Host "  Compliant Emails: Yes" -ForegroundColor Cyan }
 Write-Host "  Roles processed : $($selectedRoles -join ', ')"
 Write-Host "  Emails sent     : $sentCount"           -ForegroundColor $(if ($sentCount -gt 0) {"Cyan"} else {"Gray"})
-Write-Host "  Fully compliant : $skippedCount"        -ForegroundColor Green
-if ($warnCount  -gt 0) { Write-Host "  Warnings (no cred record): $warnCount"  -ForegroundColor Yellow }
-if ($errorCount -gt 0) { Write-Host "  Send errors     : $errorCount"           -ForegroundColor Red    }
-Write-Host "  HTML previews   : $OutputFolder\"       -ForegroundColor Gray
-if ($ExportReport) {
-    Write-Host "  CSV report      : $(Join-Path $OutputFolder 'ComplianceReport.csv')" -ForegroundColor Magenta
-}
+Write-Host "  Fully compliant : $($compliantList.Count)"      -ForegroundColor Green
 Write-Host ""
